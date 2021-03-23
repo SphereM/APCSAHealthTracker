@@ -12,7 +12,7 @@ public class Tracker {
         Scanner fileScan;
         PrintWriter output;
 
-        int selection;
+        // int selection;
 
         System.out.println("Welcome to the Health Tracker! Select a button on the menu!");
 
@@ -32,8 +32,8 @@ public class Tracker {
 
                     pw.write("Your selection number is : " + selection + "\n");
                     
-                    long water_remaining = 0;
-                    long existing_water = 0;
+                    // long water_remaining = 0;
+                    // long existing_water = 0;
 
                     long calorie_intake = 0;
                     long calorie_remaining = 0;
@@ -50,7 +50,7 @@ public class Tracker {
                     if (type.equals("Water")) {
                         // keep track of water stuff
                         System.out.println("Enter the amount of water in ounces: \n");
-                        long water_intake = userScan.nextLine();
+                        long water_intake = userScan.nextLong();
 
                         long total_water = water_intake; // use the value of total_water later on, so that you can add onto it
                         System.out.println(total_water);
