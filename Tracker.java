@@ -30,7 +30,7 @@ public class Tracker {
                     String fileName = userScan.nextLine();
                     PrintWriter pw = new PrintWriter(fileName);
 
-                    pw.write("Your selection number is : " + selection + "\n");
+                    // pw.write("Your selection number is : " + selection + "\n");
                     
                     // long water_remaining = 0;
                     // long existing_water = 0;
@@ -55,12 +55,19 @@ public class Tracker {
                         long total_water = water_intake; // use the value of total_water later on, so that you can add onto it
                         System.out.println(total_water);
                         
-                        // 
+                        pw.write("Water in ounces:" + total_water);
+
 
 
                     } else if (type.equals("Calories")) {
                         // keep track of calories stuff
+                        System.out.println("Enter the amount of water in ounces: \n");
+                        long calorie_intake = userScan.nextLong();
 
+                        long total_calori = calori_intake; // use the value of total_water later on, so that you can add onto it
+                        System.out.println(total_calori);
+                        
+                        pw.write("Water in ounces:" + total_calori);
                         
                     }
 
