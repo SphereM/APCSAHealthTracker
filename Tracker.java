@@ -104,7 +104,7 @@ public class Tracker {
             System.exit(0);
 
         } catch (NumberFormatException e) {
-            System.out.println("HI");
+            System.out.println("NumberFormatException");
             
         }
     }
