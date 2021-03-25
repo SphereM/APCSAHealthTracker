@@ -13,9 +13,8 @@ public class Tracker {
         Scanner fileScan;
         PrintWriter output;
 
-        // int selection;
 
-        System.out.println("Welcome to the Health Tracker! Select a button on the menu!");
+        System.out.println("Welcome to the Health Tracker! Please select a button on the menu!");
 
         try {
 
@@ -55,35 +54,6 @@ public class Tracker {
                             pw.write("Calories:" + total_calorie);
 
                     
-                        // System.out.println("Enter the data you want to enter: \n");
-                        // System.out.println("| Water | Calories |\n");
-                        // String type = userScan.nextLine();
-
-                        // if (type.equals("Water")) {
-                        //     // keep track of water stuff
-                        //     // System.out.println("Enter the amount of water in ounces: \n");
-                        //     // long water_intake = userScan.nextLong();
-
-                        //     // long total_water = water_intake; // use the value of total_water later on, so that you can add onto it
-                        //     // System.out.println(total_water);
-                        
-                        //     // pw.write("Water in ounces:" + total_water);
-                            
-
-
-                        // } else if (type.equals("Calories")) {
-                        //     // keep track of calories stuff
-                        //     // System.out.println("Enter the amount of calories: \n");
-                        //     // long calorie_intake = userScan.nextLong();
-
-                        //     // long total_calorie = calorie_intake; // use the value of total_water later on, so that you can add onto it
-                        //     // System.out.println(total_calorie);
-                        
-                        //     // pw.write("Calories:" + total_calorie);
-                            
-                        
-                        // }
-                    
 
                     pw.close();
                     
@@ -104,7 +74,7 @@ public class Tracker {
             System.exit(0);
 
         } catch (NumberFormatException e) {
-            System.out.println("NumberFormatException");
+            System.out.println("NumberFormatException - Data is saved in file");
             
         }
     }
