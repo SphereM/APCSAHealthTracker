@@ -35,11 +35,11 @@ public class Tracker {
                     pw.write("Date: " + nameGame + "\n");
 
                     System.out.println("Do you want to enter a value? \n");
-                    System.out.println("0 = no & 1 = yes \n");
-                    int again = userScan.nextInt();
+                    System.out.println("yes or no \n");
+                    boolean again = userScan.nextLine();
                     System.out.println(again);
 
-                    while (again == 1) {
+                    while (again == "yes") {
                         System.out.println("Enter the data you want to enter: \n");
                         System.out.println("| Water | Calories |\n");
                         String type = userScan.nextLine();
@@ -53,7 +53,7 @@ public class Tracker {
                             System.out.println(total_water);
                         
                             pw.write("Water in ounces:" + total_water);
-
+                            break;
 
 
                         } else if (type.equals("Calories")) {
@@ -65,21 +65,48 @@ public class Tracker {
                             System.out.println(total_calorie);
                         
                             pw.write("Calories:" + total_calorie);
+                            break;
                         
                         }
 
+
                     }
-                    
-
+                
                     pw.close();
-
+                
                 }
 
                 Menu();
                 selection = Integer.parseInt(userScan.nextLine());
 
+                if (selection == 3) {
+                    System.out.println("Enter the FileName to replace the values of: \n");
+                    String replaceFile = userScan.nextLine();
+                    System.out.println("Do you want to replace water or calories? \t");
+                    String origName = userScan.nextLine();
+                    System.out.println("Enter the new value to add: \n");
+                    int replaceValue = userScan.nextInt();
+
+                    int newValue = total_calorie + replaceValue;
+
+                    replaceLine(replaceFile,origName,newValue);
+
+                    System.out.println("The character chosen has been randomized successfully!");
+
+              
+                    
+
+                }
+                
+                Menu();
+                selection = Integer.parseInt(userScan.nextLine());
+
             }
 
+            if (selection == 4) {
+                System.out.println("Quiting game.");
+                System.exit(0);
+            }
 
 
         } catch (FileNotFoundException e) {
