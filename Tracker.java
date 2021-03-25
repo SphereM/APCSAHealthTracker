@@ -30,24 +30,16 @@ public class Tracker {
                     String fileName = userScan.nextLine();
                     PrintWriter pw = new PrintWriter(fileName);
 
-                    // pw.write("Your selection number is : " + selection + "\n");
-                    
-                    // long water_remaining = 0;
-                    // long existing_water = 0;
-
-                    // long calorie_intake = 0;
-                    // long calorie_remaining = 0;
-                    // long exisitng_calorie = 0;
-
                     System.out.println("Enter the date you want the data to be saved on: \n");
                     String nameGame = userScan.nextLine();
-                    pw.write("Date : " + nameGame + "\n");
+                    pw.write("Date: " + nameGame + "\n");
 
-                    System.out.println("Do you want to enter a value? y/n \n");
-                    String again = userScan.nextLine();
-                    pw.write(again + "\n");
+                    System.out.println("Do you want to enter a value? \n");
+                    System.out.println("0 = no & 1 = yes \n");
+                    int again = userScan.nextInt();
+                    System.out.println(again);
 
-                    // while (again = "yes") {
+                    while (again == 1) {
                         System.out.println("Enter the data you want to enter: \n");
                         System.out.println("| Water | Calories |\n");
                         String type = userScan.nextLine();
@@ -76,7 +68,7 @@ public class Tracker {
                         
                         }
 
-                    // }
+                    }
                     
 
                     pw.close();
