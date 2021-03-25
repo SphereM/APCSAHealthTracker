@@ -35,41 +35,49 @@ public class Tracker {
                     // long water_remaining = 0;
                     // long existing_water = 0;
 
-                    long calorie_intake = 0;
-                    long calorie_remaining = 0;
-                    long exisitng_calorie = 0;
+                    // long calorie_intake = 0;
+                    // long calorie_remaining = 0;
+                    // long exisitng_calorie = 0;
 
                     System.out.println("Enter the date you want the data to be saved on: \n");
                     String nameGame = userScan.nextLine();
                     pw.write("Date : " + nameGame + "\n");
 
-                    System.out.println("Enter the data you want to enter: \n");
-                    System.out.println("| Water | Calories |\n");
-                    String type = userScan.nextLine();
+                    System.out.println("Do you want to enter a value? y/n \n");
+                    String again = userScan.nextLine();
+                    pw.write(again + "\n");
 
-                    if (type.equals("Water")) {
-                        // keep track of water stuff
-                        System.out.println("Enter the amount of water in ounces: \n");
-                        long water_intake = userScan.nextLong();
+                    // while (again = "yes") {
+                        System.out.println("Enter the data you want to enter: \n");
+                        System.out.println("| Water | Calories |\n");
+                        String type = userScan.nextLine();
 
-                        long total_water = water_intake; // use the value of total_water later on, so that you can add onto it
-                        System.out.println(total_water);
+                        if (type.equals("Water")) {
+                            // keep track of water stuff
+                            System.out.println("Enter the amount of water in ounces: \n");
+                            long water_intake = userScan.nextLong();
+
+                            long total_water = water_intake; // use the value of total_water later on, so that you can add onto it
+                            System.out.println(total_water);
                         
-                        pw.write("Water in ounces:" + total_water);
+                            pw.write("Water in ounces:" + total_water);
 
 
 
-                    } else if (type.equals("Calories")) {
-                        // keep track of calories stuff
-                        System.out.println("Enter the amount of water in ounces: \n");
-                        long calorie_intake = userScan.nextLong();
+                        } else if (type.equals("Calories")) {
+                            // keep track of calories stuff
+                            System.out.println("Enter the amount of calories: \n");
+                            long calorie_intake = userScan.nextLong();
 
-                        long total_calori = calori_intake; // use the value of total_water later on, so that you can add onto it
-                        System.out.println(total_calori);
+                            long total_calorie = calorie_intake; // use the value of total_water later on, so that you can add onto it
+                            System.out.println(total_calorie);
                         
-                        pw.write("Water in ounces:" + total_calori);
+                            pw.write("Calories:" + total_calorie);
                         
-                    }
+                        }
+
+                    // }
+                    
 
                     pw.close();
 

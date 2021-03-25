@@ -1,3 +1,2 @@
-Your selection number is : 1
-Date : march 23
-Water in ounces:12
+Date : March 23
+Water in ounces:23
