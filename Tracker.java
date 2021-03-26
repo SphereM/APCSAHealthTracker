@@ -28,30 +28,34 @@ public class Tracker {
                 if (selection == 1) {
                     System.out.println("What would you like to save the file as?\t");
                     String fileName = userScan.nextLine();
-                    PrintWriter pw = new PrintWriter(fileName);
+                    PrintWriter pw = new PrintWriter(fileName); // takes the file name entered and creates the file
 
                     System.out.println("Enter the date you want the data to be saved on: \n");
-                    String nameGame = userScan.nextLine();
+                    String nameGame = userScan.nextLine(); 
 
-                    pw.write("Date: " + nameGame + "\n");
+                    pw.write("Date: " + nameGame + "\n"); // puts the date into the file
 
-                            System.out.println("Enter the amount of water in ounces: \n");
+                            System.out.println("Enter the amount of water in ounces: \t");
                             long water_intake = userScan.nextLong();
 
-                            long total_water = water_intake; // use the value of total_water later on, so that you can add onto it
+                            long total_water = water_intake;
+                            // use the value of total_water later on, so that you can add onto it
+                            // when they want to edit the file
                             // System.out.println(total_water);
                         
-                            pw.write("Water in ounces: " + total_water);
+                            pw.write("Water in ounces: " + total_water); // enters the number of calories into the file
 
-                            pw.write("\n");
+                            pw.write("\n"); // adds a line
 
-                            System.out.println("Enter the amount of calories: \n");
+                            System.out.println("Enter the amount of calories: \t");
                             long calorie_intake = userScan.nextLong();
 
-                            long total_calorie = calorie_intake; // use the value of total_water later on, so that you can add onto it
+                            long total_calorie = calorie_intake;
+                            // use the value of total_water later on, so that you can add onto it
+                            // when they want to edit the file
                             // System.out.println(total_calorie);
                         
-                            pw.write("Calories:" + total_calorie);
+                            pw.write("Calories:" + total_calorie); // enters the number of calories into the file
 
                     
 
@@ -70,11 +74,11 @@ public class Tracker {
 
 
         } catch (FileNotFoundException e) {
-            System.out.println("**Error: File not found.**");
+            System.out.println("** ERROR: File not found **");
             System.exit(0);
 
         } catch (NumberFormatException e) {
-            System.out.println("NumberFormatException - Data is saved in file");
+            System.out.println("NumberFormatException - Data is saved in the file.");
             
         }
     }
