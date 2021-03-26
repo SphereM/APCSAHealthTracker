@@ -33,23 +33,23 @@ public class HealthSave {
 
                             // keep track of water stuff
                     System.out.println("Enter the amount of water in ounces: \n");
-                    long water_intake = userScan.nextLong();
+                    int water_intake = userScan.nextInt();
 
                     long total_water = water_intake; // use the value of total_water later on, so that you can add onto it
-                    System.out.println(total_water);
+                    //System.out.println(total_water);
                     fw.write("Water in ounces:" + total_water);
 
 
                             // keep track of calories stuff
                     System.out.println("Enter the amount of calories: \n");
-                    long calorie_intake = userScan.nextLong();
-                    long total_calorie = calorie_intake; // use the value of total_water later on, so that you can add onto it
-                    System.out.println(total_calorie);
+                    int calorie_intake = userScan.nextInt();
+                    int total_calorie = calorie_intake; // use the value of total_water later on, so that you can add onto it
+                    //System.out.println(total_calorie);
                     
                     fw.write("Calories:" + total_calorie);
 
                     }
-                    
+                    selection = 5;
 
                     //fw.close();
 
@@ -65,9 +65,10 @@ public class HealthSave {
         } catch (FileNotFoundException e) {
             System.out.println("**Error: File not found.**");
             System.exit(0);
+        } catch (NumberFormatException e) {
+            System.out.println("NumberFormatException - Data is saved in the file.");
         }
     }
-
 
     public static void Menu() {
         System.out.println("\n ~~ MENU: ~~ \n(1) Create new file \n(2) Validate saved file \n(3) Edit an existing file \n(4) Quit game \n");
