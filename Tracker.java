@@ -29,6 +29,7 @@ public class Tracker {
                     System.out.println("What would you like to save the file as?\t");
                     String fileName = userScan.nextLine();
                     PrintWriter pw = new PrintWriter(fileName); // takes the file name entered and creates the file
+                    // if you enter in the same file name, it overwrites the original data in the file
 
                     System.out.println("Enter the date you want the data to be saved on: \n");
                     String nameGame = userScan.nextLine(); 
