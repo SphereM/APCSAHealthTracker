@@ -17,7 +17,7 @@ public class HealthSave {
         
         // int selection;
 
-        System.out.println("Welcome to the Health Tracker! Select a button on the menu!");
+        
 
         try {
 
