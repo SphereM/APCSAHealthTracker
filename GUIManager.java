@@ -49,9 +49,27 @@ public class GUIManager extends JFrame implements ActionListener {
         JLabel title = new JLabel("Create a new file", SwingConstants.CENTER);
         JLabel date = new JLabel("Input Date (mm/dd/yy):", SwingConstants.RIGHT);
         JLabel water = new JLabel("Input water consumed (in oz):", SwingConstants.RIGHT);
+        JLabel error = new JLabel("", SwingConstants.CENTER);
         JTextField inputDate = new JTextField();
         JTextField inputWater = new JTextField();
         JButton submitButton = new JButton("Submit");
+
+        submitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String dateValue = inputDate.getText();
+                double waterValue = Double.parseDouble(inputWater.getText()); // assume value is always a number
+
+                // Save debugging for later
+                // try {
+                //     double waterValue = Double.parseDouble(inputWater.getText());
+                // } catch (NumberFormatException error) {
+                //     error.setText("Error: Given values are not in correct format");
+                // }
+
+                // send date to tracker for saving
+            }
+        });
 
         gl.setHorizontalGroup(gl.createParallelGroup(GroupLayout.Alignment.CENTER)
             .addComponent(title, 100, getWidth(), Short.MAX_VALUE)
@@ -63,6 +81,7 @@ public class GUIManager extends JFrame implements ActionListener {
                     .addComponent(inputDate)
                     .addComponent(inputWater)))
             .addComponent(submitButton)
+            .addComponent(error)
         );
 
         gl.setVerticalGroup(gl.createSequentialGroup()
@@ -74,6 +93,7 @@ public class GUIManager extends JFrame implements ActionListener {
                 .addComponent(water)
                 .addComponent(inputWater))
             .addComponent(submitButton)
+            .addComponent(error)
         );
     }
 
