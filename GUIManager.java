@@ -2,57 +2,62 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-import static javax.swing.GroupLayout.Alignment.BASELINE;
-import static javax.swing.GroupLayout.Alignment.CENTER;
-
 public class GUIManager extends JFrame implements ActionListener {
-    private void initUI() {
+    private JPanel home = new JPanel();
+    private JPanel newFile = new JPanel();
+
+    private void initWindow() { // Maybe separate methods for UIs
         setSize(new Dimension(720, 480));
-        setTitle("Health Tracker");
-        setLocationRelativeTo(null);    
+        setTitle("Health App");
+        setLocationRelativeTo(null); 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         
-        var window = getContentPane();
-        var gl = new GroupLayout(window);
-        window.setLayout(gl);
+        initHomeUI();
+    }
 
-        gl.setAutoCreateGaps(true);
-        gl.setAutoCreateContainerGaps(true);
-
+    private void initHomeUI() {
+        // uses FlowLayout by default
         JButton newFileButton = new JButton("Create a new file");
         JButton existingFileButton = new JButton("Use existing file");
 
-        newFileButton.addActionListener(this);
-        existingFileButton.addActionListener(this);
+        newFileButton.setPreferredSize(new Dimension(250, 250));
+        existingFileButton.setPreferredSize(new Dimension(250, 250));
 
-        gl.setHorizontalGroup(gl.createSequentialGroup()
-            .addComponent(newFileButton, 250, 250, 250)
-            .addComponent(existingFileButton)
-        );
+        newFileButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                initNewFileUI();
+                setContentPane(newFile);
+                invalidate();
+                validate();
+            }
+        });
 
-        gl.setVerticalGroup(gl.createSequentialGroup()
-            .addGroup(gl.createParallelGroup(BASELINE)
-                .addComponent(newFileButton)
-                .addComponent(existingFileButton))
-        );
+        home.add(newFileButton);
+        home.add(existingFileButton);
 
-        gl.linkSize(newFileButton, existingFileButton);
+        setContentPane(home);
+    }
+
+    private void initNewFileUI() {
+        JTextField title = new JTextField("Create a new file");
+
+        JButton button = new JButton("Hola");
+        button.setPreferredSize(new Dimension(250, 250));
+        newFile.add(button);
     }
 
     public GUIManager() {
-        initUI();
+        initWindow();
     }
     
     public void start() {
-        EventQueue.invokeLater(() -> {
-            GUIManager manager = new GUIManager();
-            manager.setVisible(true);
-        });
+        setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("Hola");
+        // Can't compile without
     }
 }
 
