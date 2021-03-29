@@ -10,7 +10,9 @@ public class HealthSave {
         Scanner userScan;
         File file;
         Scanner fileScan;
-        PrintWriter output;
+        String oldContent = "";
+        BufferedReader reader = null;
+        FileWriter writer = null;
 
         
         // int selection;
@@ -29,15 +31,23 @@ public class HealthSave {
                 if (selection == 3) {
                     System.out.println("What file would you like to edit?\t");
                     String fileName = userScan.nextLine();
-                    FileWriter fw = new FileWriter(fileName);
+                    reader = new BufferedReader(new FileReader(fileName));
+                    String line = reader.readLine();
+                    String edit = "";
+
+                    while (line != null){
+                        oldContent = oldContent + line + System.lineSeparator();
+
+                        line = reader.readLine();
+                    }
 
                             // keep track of water stuff
                     System.out.println("Enter the amount of water in ounces: \n");
                     int water_intake = userScan.nextInt();
 
-                    long total_water = water_intake; // use the value of total_water later on, so that you can add onto it
+                    int total_water = water_intake; // use the value of total_water later on, so that you can add onto it
                     //System.out.println(total_water);
-                    fw.write("Water in ounces:" + total_water);
+                    edit = edit + "Water in ounces:" + total_water+"\n";
 
 
                             // keep track of calories stuff
@@ -46,12 +56,17 @@ public class HealthSave {
                     int total_calorie = calorie_intake; // use the value of total_water later on, so that you can add onto it
                     //System.out.println(total_calorie);
                     
-                    fw.write("Calories:" + total_calorie);
+                    edit = edit + "Calories:" + total_calorie+"\n";
 
+                    String newContent = oldContent.replaceAll(oldContent, edit);
+                    writer = new FileWriter(fileName);
+                    writer.write(newContent);
                     }
                     selection = 5;
 
                     //fw.close();
+                    reader.close();
+                    writer.close();
 
                 }
 
