@@ -16,7 +16,7 @@ public class GUIManager extends JFrame implements ActionListener {
     }
 
     private void initHomeUI() {
-        // uses FlowLayout by default
+        // uses FlowLayout by default and it's fine as is
         JButton newFileButton = new JButton("Create a new file");
         JButton existingFileButton = new JButton("Use existing file");
 
@@ -36,15 +36,45 @@ public class GUIManager extends JFrame implements ActionListener {
         home.add(newFileButton);
         home.add(existingFileButton);
 
-        setContentPane(home);
+        setContentPane(home); // inital setting 
     }
 
     private void initNewFileUI() {
-        JTextField title = new JTextField("Create a new file");
+        GroupLayout gl = new GroupLayout(newFile);
+        newFile.setLayout(gl);
+        
+        gl.setAutoCreateGaps(true);
+        gl.setAutoCreateContainerGaps(true);
 
-        JButton button = new JButton("Hola");
-        button.setPreferredSize(new Dimension(250, 250));
-        newFile.add(button);
+        JLabel title = new JLabel("Create a new file", SwingConstants.CENTER);
+        JLabel date = new JLabel("Input Date (mm/dd/yy):", SwingConstants.RIGHT);
+        JLabel water = new JLabel("Input water consumed (in oz):", SwingConstants.RIGHT);
+        JTextField inputDate = new JTextField();
+        JTextField inputWater = new JTextField();
+        JButton submitButton = new JButton("Submit");
+
+        gl.setHorizontalGroup(gl.createParallelGroup(GroupLayout.Alignment.CENTER)
+            .addComponent(title, 100, getWidth(), Short.MAX_VALUE)
+            .addGroup(gl.createSequentialGroup()
+                .addGroup(gl.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                    .addComponent(date)
+                    .addComponent(water))
+                .addGroup(gl.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(inputDate)
+                    .addComponent(inputWater)))
+            .addComponent(submitButton)
+        );
+
+        gl.setVerticalGroup(gl.createSequentialGroup()
+            .addComponent(title)
+            .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addComponent(date)
+                .addComponent(inputDate))
+            .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addComponent(water)
+                .addComponent(inputWater))
+            .addComponent(submitButton)
+        );
     }
 
     public GUIManager() {
