@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.io.*;
 import java.lang.NumberFormatException;
+import java.lang.Math;
 
 public class Tracker {
     
@@ -31,32 +32,70 @@ public class Tracker {
                     PrintWriter pw = new PrintWriter(fileName); // takes the file name entered and creates the file
                     // if you enter in the same file name, it overwrites the original data in the file
 
-                    System.out.println("Enter the date you want the data to be saved on: \n");
+                    System.out.println("Enter the date you want the data to be saved on: \t");
                     String nameGame = userScan.nextLine(); 
 
                     pw.write("Date: " + nameGame + "\n"); // puts the date into the file
 
+                    System.out.println("Please enter your name: \t");
+                    String name = userScan.nextLine(); 
+
+                    pw.write("\nName: " + name); // puts the name into the file
+
+
+
+                            System.out.println("\nPlease enter your weight in pounds: ");
+                            double weight = userScan.nextDouble();
+                            pw.write("\nWeight: " + weight);
+
+                            System.out.println("\nPlease enter your height in inches: ");
+                            double height = userScan.nextDouble();
+                            pw.write("\nHeight: " + height);
+
+                            System.out.println("\nPlease enter your age: \t");
+                            long age = userScan.nextLong();
+                            pw.write("\nAge: " + age);
+
+
+                            double water_goal = ((weight/2.2)*age)/28.3;
+                            System.out.println("Healthy goal for water consumption: \t" + water_goal);
+                            pw.write("\nHealthy goal for water consumption: " + water_goal);
+                    
+
+                            double calorie_goal = (10 * (weight / 2.205) + 6.25 * (height * 2.54) - 5 * age + 5) * 1.55;
+                            System.out.println("Healthy goal for calories consumption: \t" + calorie_goal);
+                            pw.write("\nHealthy goal for calorie consumption: " + calorie_goal);
+
+                            
                             System.out.println("Enter the amount of water in ounces: \t");
                             long water_intake = userScan.nextLong();
 
                             long total_water = water_intake;
-                            // use the value of total_water later on, so that you can add onto it
-                            // when they want to edit the file
-                            // System.out.println(total_water);
+        
                         
-                            pw.write("Water in ounces: " + total_water); // enters the number of calories into the file
+                            pw.write("Water in ounces: " + total_water); // enters the number of water oz into the file
 
+                            double water_goal_reached = water_goal - total_water;
                             pw.write("\n"); // adds a line
+
+                            System.out.println("\nOunces of Water left to reach healthy goal: " + water_goal_reached);
+                            pw.write("\nOunces of Water left to reach healthy goal: " + water_goal_reached);
 
                             System.out.println("Enter the amount of calories: \t");
                             long calorie_intake = userScan.nextLong();
 
                             long total_calorie = calorie_intake;
-                            // use the value of total_water later on, so that you can add onto it
-                            // when they want to edit the file
-                            // System.out.println(total_calorie);
+
+                            pw.write("Calories: " + total_calorie); // enters the number of water oz into the file
+
+                            double calorie_goal_reached = water_goal - total_water;
+                            pw.write("\n"); // adds a line
+
+                            System.out.println("\nCalories left to reach healthy goal: " + calorie_goal_reached);
+                            pw.write("Calories left to reach healthy goal: " + calorie_goal_reached);
+                            
                         
-                            pw.write("Calories:" + total_calorie); // enters the number of calories into the file
+                            // pw.write("Calories:" + total_calorie); // enters the number of calories into the file
 
                     
 
