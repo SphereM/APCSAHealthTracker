@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 public class GUIManager extends JFrame {
     private void initWindow() {
@@ -17,11 +16,22 @@ public class GUIManager extends JFrame {
         setContentPane(home);
     }
 
-    // public void initNewFileUI() {
-    //     JPanel newFile = new NewFileUI();
-    //     setContentPane(newFile);
-    //     revalidate();
-    // }
+    public void initNewFileUI() {
+        JPanel newFile = new NewFileUI(this);
+        setContentPane(newFile);
+        revalidate();
+    }
+
+    public void initWaterTrackerUI(String ageInput, String weightInput, String nameInput, String dateInput, String consumedInput) {
+        JPanel waterTracker = new WaterTrackerUI(this, ageInput, weightInput, nameInput, dateInput, consumedInput);
+        setContentPane(waterTracker);
+        revalidate();
+    }
+
+    public void switchPanel(JPanel panel) {
+        setContentPane(panel);
+        revalidate();
+    }
 
     public GUIManager() {
         initWindow();
