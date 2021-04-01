@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class HomeUI extends JPanel {
-    public HomeUI(JFrame frame) {
+    public HomeUI(GUIManager manager) {
         // Defaults to FlowLayout, fine as is
         JButton newFileButton = new JButton("Create a new file");
         // JButton existingFileButton = new JButton("Use existing file");
@@ -14,9 +14,7 @@ public class HomeUI extends JPanel {
         newFileButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JPanel newFileUI = new NewFileUI(frame);
-                frame.setContentPane(newFileUI);
-                frame.revalidate();
+                manager.initNewFileUI();
             }
         });
 
