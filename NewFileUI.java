@@ -3,9 +3,9 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class NewFileUI extends JPanel {
-    public NewFileUI() {
-        GroupLayout gl = new GroupLayout(newFile);
-        newFile.setLayout(gl);
+    public NewFileUI(JFrame frame) {
+        GroupLayout gl = new GroupLayout(this);
+        setLayout(gl);
         
         gl.setAutoCreateGaps(true);
         gl.setAutoCreateContainerGaps(true);
@@ -17,7 +17,8 @@ public class NewFileUI extends JPanel {
         JLabel weight = new JLabel("Input Weight (lbs)", SwingConstants.RIGHT);
         JLabel water = new JLabel("Input water consumed (fl oz):", SwingConstants.RIGHT);
         JLabel calories = new JLabel("Input calories consumed:", SwingConstants.RIGHT);
-        JLabel error = new JLabel("", SwingConstants.CENTER);
+        JLabel file = new JLabel("Input Save File Name:", SwingConstants.RIGHT);
+        // JLabel error = new JLabel("", SwingConstants.CENTER);
         
         JTextField inputDate = new JTextField();
         JTextField inputAge = new JTextField();
@@ -25,6 +26,7 @@ public class NewFileUI extends JPanel {
         JTextField inputWeight = new JTextField();
         JTextField inputWater = new JTextField();
         JTextField inputCalories = new JTextField();
+        JTextField inputFileName = new JTextField();
 
         JButton submitButton = new JButton("Submit");
 
@@ -37,6 +39,7 @@ public class NewFileUI extends JPanel {
                 String weightValue = inputWeight.getText();
                 String waterValue = inputWater.getText();
                 String calorieValue = inputCalories.getText(); 
+                String fileName = inputFileName.getText();
 
                 System.out.println(
                     "Date: " + dateValue + 
@@ -44,7 +47,8 @@ public class NewFileUI extends JPanel {
                     "\nHeight " + heightValue + " in." +
                     "\nWeight: " + weightValue + " lbs" +
                     "\nWater Consumed: " + waterValue + " fl oz." + 
-                    "\nCalories Consumed: " + calorieValue + " cal"
+                    "\nCalories Consumed: " + calorieValue + " cal" +
+                    "\nFile Name: " + fileName + ".txt"
                 );
 
                 // Save debugging for later
@@ -57,7 +61,7 @@ public class NewFileUI extends JPanel {
         });
 
         gl.setHorizontalGroup(gl.createParallelGroup(GroupLayout.Alignment.CENTER) // Align to center
-            .addComponent(title, 100, getWidth(), Short.MAX_VALUE)
+            .addComponent(title)
             .addGroup(gl.createSequentialGroup()
                 .addGroup(gl.createParallelGroup(GroupLayout.Alignment.TRAILING) // Align to right
                     .addComponent(date)
@@ -65,16 +69,18 @@ public class NewFileUI extends JPanel {
                     .addComponent(height)
                     .addComponent(weight)
                     .addComponent(water)
-                    .addComponent(calories))
+                    .addComponent(calories)
+                    .addComponent(file))
                 .addGroup(gl.createParallelGroup(GroupLayout.Alignment.LEADING) // Align to left
                     .addComponent(inputDate)
                     .addComponent(inputAge)
                     .addComponent(inputHeight)
                     .addComponent(inputWeight)
                     .addComponent(inputWater)
-                    .addComponent(inputCalories)))
+                    .addComponent(inputCalories)
+                    .addComponent(inputFileName)))
             .addComponent(submitButton)
-            .addComponent(error)
+            // .addComponent(error)
         );
 
         gl.setVerticalGroup(gl.createSequentialGroup()
@@ -97,9 +103,11 @@ public class NewFileUI extends JPanel {
             .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE)
                 .addComponent(calories)
                 .addComponent(inputCalories))
-
+            .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addComponent(file)
+                .addComponent(inputFileName))
             .addComponent(submitButton)
-            .addComponent(error)
+            // .addComponent(error)
         );
     }    
 }

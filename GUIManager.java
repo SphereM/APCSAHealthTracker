@@ -3,27 +3,25 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class GUIManager extends JFrame {
-    private JPanel home = new JPanel();
-    private JPanel newFile = new JPanel();
-
-    private void initWindow() { // Maybe separate methods for UIs
+    private void initWindow() {
         setSize(new Dimension(720, 480));
         setTitle("Health App");
         setLocationRelativeTo(null); 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        
+
         initHomeUI();
     }
 
     private void initHomeUI() {
-        HomeUI homeUI = new HomeUI();
-        setContentPane(homeUI);
+        JPanel home = new HomeUI(this);
+        setContentPane(home);
     }
 
-    private void initNewFileUI() {
-        NewFileUI newFileUI = new NewFileUI();
-        setContentPane(newFileUI);
-    }
+    // public void initNewFileUI() {
+    //     JPanel newFile = new NewFileUI();
+    //     setContentPane(newFile);
+    //     revalidate();
+    // }
 
     public GUIManager() {
         initWindow();
