@@ -6,7 +6,10 @@ import java.io.*;
 
 public class HealthSave {
     
-    public static void main(String[] args) throws IOException {
+    
+    public void editFile(String fileToEdit) throws IOException {
+    
+   
         Scanner userScan;
         File file;
         Scanner fileScan;
@@ -23,69 +26,48 @@ public class HealthSave {
 
             userScan = new Scanner(System.in);
 
-            Menu();
-            int selection = Integer.parseInt(userScan.nextLine());
             
-            while (selection < 4 && selection > 0) {
-                
-                if (selection == 3) {
-                    System.out.println("What file would you like to edit?\t");
-                    String fileName = userScan.nextLine();
-                    reader = new BufferedReader(new FileReader(fileName));
-                    String line = reader.readLine();
-                    String edit = "";
+                System.out.println("What file would you like to edit?\t");
+                String fileName = userScan.nextLine();
+                reader = new BufferedReader(new FileReader(fileName));
+                String line = reader.readLine();
+                String edit = "";
 
-                    while (line != null){
-                        oldContent = oldContent + line + System.lineSeparator();
+                while (line != null){
+                    oldContent = oldContent + line + System.lineSeparator();
 
-                        line = reader.readLine();
+                    line = reader.readLine();
                     }
 
                             // keep track of water stuff
-                    System.out.println("Enter the amount of water in ounces: \n");
-                    int water_intake = userScan.nextInt();
+                System.out.println("Enter the amount of water in ounces: \n");
+                int water_intake = userScan.nextInt();
 
-                    int total_water = water_intake; // use the value of total_water later on, so that you can add onto it
+                int total_water = water_intake; // use the value of total_water later on, so that you can add onto it
                     //System.out.println(total_water);
-                    edit = edit + "Water in ounces:" + total_water+"\n";
+                edit = edit + "Water in ounces:" + total_water+"\n";
 
 
                             // keep track of calories stuff
-                    System.out.println("Enter the amount of calories: \n");
-                    int calorie_intake = userScan.nextInt();
-                    int total_calorie = calorie_intake; // use the value of total_water later on, so that you can add onto it
-                    //System.out.println(total_calorie);
+                System.out.println("Enter the amount of calories: \n");
+                int calorie_intake = userScan.nextInt();
+                int total_calorie = calorie_intake; // use the value of total_water later on, so that you can add onto it
+                //System.out.println(total_calorie);
                     
-                    edit = edit + "Calories:" + total_calorie+"\n";
+                edit = edit + "Calories:" + total_calorie+"\n";
 
-                    String newContent = oldContent.replaceAll(oldContent, edit);
-                    writer = new FileWriter(fileName);
-                    writer.write(newContent);
-                    }
-                    selection = 5;
+                String newContent = oldContent.replaceAll(oldContent, edit);
+                writer = new FileWriter(fileName);
+                writer.write(newContent);
+                    
+                    //selection = 5;
 
                     //fw.close();
-                    reader.close();
-                    writer.close();
+                reader.close();
+                writer.close();
+            } catch(IOException e) {
+                
+            }
 
-                }
-
-                Menu();
-                selection = Integer.parseInt(userScan.nextLine());
-
-            
-
-
-
-        } catch (FileNotFoundException e) {
-            System.out.println("**Error: File not found.**");
-            System.exit(0);
-        } catch (NumberFormatException e) {
-            System.out.println("NumberFormatException - Data is saved in the file.");
-        }
-    }
-
-    public static void Menu() {
-        System.out.println("\n ~~ MENU: ~~ \n(1) Create new file \n(2) Validate saved file \n(3) Edit an existing file \n(4) Quit game \n");
     }
 }
