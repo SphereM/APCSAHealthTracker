@@ -7,7 +7,31 @@ import java.lang.NumberFormatException;
 import java.lang.Math;
 
 public class Tracker {
-    
+    String fileName, date, name;
+    double weight, consumed;
+    int age;
+
+    public Tracker(String fileName, String date, String name, double weight, int age, double consumed) throws IOException {
+        this.fileName = fileName;
+        this.date = date;
+        this.name = name;
+        this.weight = weight;
+        this.age = age;
+        this.consumed = consumed;
+
+        PrintWriter pw = new PrintWriter(fileName);
+
+        // Only write relevant information for demo
+        pw.write("Date: " + date + "\n");
+        pw.write("Name: " + name + "\n");
+        pw.write("Weight: " + weight + "\n");
+        pw.write("Age: " + age + "\n");
+        pw.write("Goal: " + getWaterGoal(weight, age) + "\n");
+        pw.write("Water Consumed: " + consumed + "\n");
+
+        pw.close();    
+    }
+
     public static void main(String[] args) throws IOException  {
         Scanner userScan;
         File file;
@@ -126,5 +150,20 @@ public class Tracker {
 
     public static void Menu() {
         System.out.println("\n ~~ MENU: ~~ \n(1) Create new file \n(2) Validate saved file \n(3) Edit an existing file \n(4) Quit game \n");
+    }
+
+    public double getWaterGoal(double weight, int age) {
+        double water_goal = ((weight/2.2)*age)/28.3;
+        return water_goal;
+    }
+
+    public String waterMath(double water_intake) {
+        double consumed = water_intake;
+        double water_goal_reached = getWaterGoal(weight, age) - consumed;
+        
+        if (water_goal_reached >= consumed) {
+            return "You have reached a healthy amount of water intake!" + water_goal_reached; // return a double
+        }
+        return "You have " + water_goal_reached + " ounces of water until you reach your goal!";
     }
 }

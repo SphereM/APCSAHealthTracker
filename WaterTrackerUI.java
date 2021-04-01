@@ -3,9 +3,9 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class WaterTrackerUI extends JPanel {
-    public WaterTrackerUI(GUIManager manager, String ageInput, String weightInput, String nameInput, String dateInput, String consumedInput) {
-        Tracker tracker = new Tracker();
-        
+    public WaterTrackerUI(GUIManager manager, String fileNameInput, String ageInput, String weightInput, String nameInput, String dateInput, String consumedInput) {
+        Tracker tracker = new Tracker(fileNameInput, dateInput, nameInput, Double.parseDouble(weightInput), Integer.parseInt(ageInput), Double.parseDouble(consumedInput));
+
         GroupLayout gl = new GroupLayout(this);
         setLayout(gl);
 
@@ -13,13 +13,17 @@ public class WaterTrackerUI extends JPanel {
         gl.setAutoCreateContainerGaps(true);
 
         JLabel age = new JLabel("Age: " + ageInput, SwingConstants.CENTER);
-        JLabel weight = new JLabel("Weight (in lbs): " + weightInput, SwingConstants.CENTER);
+        JLabel weight = new JLabel("Weight: " + weightInput + "lbs", SwingConstants.CENTER);
         JLabel name = new JLabel(nameInput, SwingConstants.LEFT);
         JLabel date = new JLabel(dateInput, SwingConstants.RIGHT);
-        JLabel waterConsumed = new JLabel("Water consumed: " + consumedInput, SwingConstants.CENTER);
-        JLabel waterRemaining = new JLabel("Water remaining: ", SwingConstants.CENTER);
+        JLabel waterConsumed = new JLabel("Water consumed: " + consumedInput + " oz", SwingConstants.CENTER);
+        JLabel waterGoal = new JLabel("Water goal: " + (tracker.getWaterGoal(Double.parseDouble(weightInput), Integer.parseInt(ageInput))-Double.parseDouble(consumedInput)) + " oz", SwingConstants.CENTER);
+        // it is the same math for the calories tracker except for the original equation used -> gonna close the sessions -> 
+        // sounds good, need to add another line for the water math to say how much is left,
+        // sine line 20 is about the goal, not how much of the goal is left
 
         // JButton switchButton = new JButton("Switch Trackers");
+        
 
         gl.setHorizontalGroup(gl.createParallelGroup(GroupLayout.Alignment.CENTER)
             .addGroup(gl.createSequentialGroup()

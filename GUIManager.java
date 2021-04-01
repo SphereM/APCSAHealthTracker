@@ -22,8 +22,8 @@ public class GUIManager extends JFrame {
         revalidate();
     }
 
-    public void initWaterTrackerUI(String ageInput, String weightInput, String nameInput, String dateInput, String consumedInput) {
-        JPanel waterTracker = new WaterTrackerUI(this, ageInput, weightInput, nameInput, dateInput, consumedInput);
+    public void initWaterTrackerUI(String fileNameInput, String ageInput, String weightInput, String nameInput, String dateInput, String consumedInput) {
+        JPanel waterTracker = new WaterTrackerUI(this, fileNameInput, ageInput, weightInput, nameInput, dateInput, consumedInput);
         setContentPane(waterTracker);
         revalidate();
     }
