@@ -28,10 +28,10 @@ public class GUIManager extends JFrame {
         revalidate();
     }
 
-    public void switchPanel(JPanel panel) {
-        setContentPane(panel);
-        revalidate();
-    }
+    // public void switchPanel(JPanel panel) {
+    //     setContentPane(panel);
+    //     revalidate();
+    // }
 
     public GUIManager() {
         initWindow();

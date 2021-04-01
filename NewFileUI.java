@@ -45,15 +45,6 @@ public class NewFileUI extends JPanel {
                 String fileName = inputFileName.getText();
 
                 manager.initWaterTrackerUI(ageValue, weightValue, nameValue, dateValue, waterValue);
-                // System.out.println(
-                //     "Date: " + dateValue + 
-                //     "\nAge:" + ageValue + 
-                //     "\nHeight " + heightValue + " in." +
-                //     "\nWeight: " + weightValue + " lbs" +
-                //     "\nWater Consumed: " + waterValue + " fl oz." + 
-                //     "\nCalories Consumed: " + calorieValue + " cal" +
-                //     "\nFile Name: " + fileName + ".txt"
-                // );
 
                 // Save debugging for later
                 // try {
