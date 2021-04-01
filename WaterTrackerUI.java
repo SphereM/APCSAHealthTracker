@@ -4,25 +4,29 @@ import java.awt.event.*;
 
 public class WaterTrackerUI extends JPanel {
     public WaterTrackerUI(GUIManager manager, String ageInput, String weightInput, String nameInput, String dateInput, String consumedInput) {
-        // display Age, weight, name, date, 
-        JLabel age = new JLabel("Age: " + ageInput);
-        JLabel weight = new JLabel("Weight (in lbs): " + weightInput);
-        JLabel name = new JLabel(nameInput);
-        JLabel date = new JLabel(dateInput);
-        JLabel waterConsumed = new JLabel("Water consumed: " + consumedInput);
-        JLabel waterRemaining = new JLabel("Water remaining: ");
-
+        Tracker tracker = new Tracker();
+        
         GroupLayout gl = new GroupLayout(this);
         setLayout(gl);
 
         gl.setAutoCreateGaps(true);
         gl.setAutoCreateContainerGaps(true);
 
+        JLabel age = new JLabel("Age: " + ageInput, SwingConstants.CENTER);
+        JLabel weight = new JLabel("Weight (in lbs): " + weightInput, SwingConstants.CENTER);
+        JLabel name = new JLabel(nameInput, SwingConstants.LEFT);
+        JLabel date = new JLabel(dateInput, SwingConstants.RIGHT);
+        JLabel waterConsumed = new JLabel("Water consumed: " + consumedInput, SwingConstants.CENTER);
+        JLabel waterRemaining = new JLabel("Water remaining: ", SwingConstants.CENTER);
+
+        // JButton switchButton = new JButton("Switch Trackers");
+
         gl.setHorizontalGroup(gl.createParallelGroup(GroupLayout.Alignment.CENTER)
             .addGroup(gl.createSequentialGroup()
-                .addComponent(name)
-                .addComponent(age)
-                .addComponent(date))
+                // additional parameters for centering on window
+                .addComponent(name, 0, manager.getWidth(), Short.MAX_VALUE)
+                .addComponent(age, 0, manager.getWidth(), Short.MAX_VALUE)
+                .addComponent(date, 0, manager.getWidth(), Short.MAX_VALUE))
             .addComponent(weight)
             .addComponent(waterConsumed)
             .addComponent(waterRemaining));
