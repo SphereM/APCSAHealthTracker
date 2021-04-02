@@ -23,7 +23,7 @@ public class WaterTrackerUI extends JPanel {
         JLabel weight = new JLabel("Weight: " + weightInput + " lbs", SwingConstants.CENTER);
         JLabel name = new JLabel(nameInput, SwingConstants.LEFT);
         JLabel date = new JLabel(dateInput, SwingConstants.RIGHT);
-        JLabel waterConsumed = new JLabel("Water consumed: " + tracker.roundOne(Double.parseDouble(consumedInput)) + " oz", SwingConstants.CENTER);
+        JLabel waterConsumed = new JLabel("Water Consumed: " + tracker.roundOne(Double.parseDouble(consumedInput)) + " oz", SwingConstants.CENTER);
         JLabel waterGoal = new JLabel("Water Goal: " + tracker.getWaterGoal() + " oz", SwingConstants.CENTER);
         JLabel waterRemaining= new JLabel("Water Remaining: " + tracker.getWaterRemaining() + " oz", SwingConstants.CENTER);
 
