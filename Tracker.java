@@ -19,7 +19,7 @@ public class Tracker {
         this.age = age;
         this.consumed = consumed;
 
-        PrintWriter pw = new PrintWriter(fileName);
+        PrintWriter pw = new PrintWriter(new File(fileName + ".txt"));
 
         // Only write relevant information for demo
         pw.write("Date: " + date + "\n");
@@ -34,15 +34,20 @@ public class Tracker {
 
     
     public double getWaterGoal() {
-        return roundoff(((weight/2.2)*age)/28.3);
+        return roundOne(((weight/2.2)*age)/28.3);
     }
 
     public double getWaterRemaining() {
-        return roundoff(getWaterGoal() - consumed);
+        return roundOne(getWaterGoal() - consumed);
         
         // Responses: 
         // "You have reached a healthy amount of water intake!" + water_goal_reached;
         // "You have " + water_goal_reached + " ounces of water until you reach your goal!";
+    }
+
+    // Round to 2 decimal spaces
+    public double roundOne(double num) {
+        return Math.round(num*10.0)/10.0;
     }
 
     // public static void main(String[] args) throws IOException  {
