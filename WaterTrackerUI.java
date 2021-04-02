@@ -1,10 +1,17 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 
 public class WaterTrackerUI extends JPanel {
     public WaterTrackerUI(GUIManager manager, String fileNameInput, String ageInput, String weightInput, String nameInput, String dateInput, String consumedInput) {
-        Tracker tracker = new Tracker(fileNameInput, dateInput, nameInput, Double.parseDouble(weightInput), Integer.parseInt(ageInput), Double.parseDouble(consumedInput));
+        Tracker tracker = null;
+        
+        try {
+            tracker = new Tracker(fileNameInput, dateInput, nameInput, Double.parseDouble(weightInput), Integer.parseInt(ageInput), Double.parseDouble(consumedInput));
+        } catch (IOException e) {
+            System.err.println(e);
+        }
 
         GroupLayout gl = new GroupLayout(this);
         setLayout(gl);
@@ -17,7 +24,8 @@ public class WaterTrackerUI extends JPanel {
         JLabel name = new JLabel(nameInput, SwingConstants.LEFT);
         JLabel date = new JLabel(dateInput, SwingConstants.RIGHT);
         JLabel waterConsumed = new JLabel("Water consumed: " + consumedInput + " oz", SwingConstants.CENTER);
-        JLabel waterGoal = new JLabel("Water goal: " + (tracker.getWaterGoal(Double.parseDouble(weightInput), Integer.parseInt(ageInput))-Double.parseDouble(consumedInput)) + " oz", SwingConstants.CENTER);
+        JLabel waterGoal = new JLabel("Water Goal: " + tracker.getWaterGoal() + " oz", SwingConstants.CENTER);
+        JLabel waterRemaining= new JLabel("Water Remaining: " + tracker.getWaterRemaining() + " oz", SwingConstants.CENTER);
         // it is the same math for the calories tracker except for the original equation used -> gonna close the sessions -> 
         // sounds good, need to add another line for the water math to say how much is left,
         // sine line 20 is about the goal, not how much of the goal is left
@@ -33,6 +41,7 @@ public class WaterTrackerUI extends JPanel {
                 .addComponent(date, 0, manager.getWidth(), Short.MAX_VALUE))
             .addComponent(weight)
             .addComponent(waterConsumed)
+            .addComponent(waterGoal)
             .addComponent(waterRemaining));
 
         gl.setVerticalGroup(gl.createSequentialGroup()
@@ -42,6 +51,7 @@ public class WaterTrackerUI extends JPanel {
                 .addComponent(date))
             .addComponent(weight)
             .addComponent(waterConsumed)
+            .addComponent(waterGoal)
             .addComponent(waterRemaining));
     }
 }

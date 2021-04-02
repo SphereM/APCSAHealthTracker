@@ -26,144 +26,142 @@ public class Tracker {
         pw.write("Name: " + name + "\n");
         pw.write("Weight: " + weight + "\n");
         pw.write("Age: " + age + "\n");
-        pw.write("Goal: " + getWaterGoal(weight, age) + "\n");
+        pw.write("Goal: " + getWaterGoal() + "\n");
         pw.write("Water Consumed: " + consumed + "\n");
 
         pw.close();    
     }
 
-    public static void main(String[] args) throws IOException  {
-        Scanner userScan;
-        File file;
-        Scanner fileScan;
-        PrintWriter output;
+    
+    public double getWaterGoal() {
+        return roundoff(((weight/2.2)*age)/28.3);
+    }
+
+    public double getWaterRemaining() {
+        return roundoff(getWaterGoal() - consumed);
+        
+        // Responses: 
+        // "You have reached a healthy amount of water intake!" + water_goal_reached;
+        // "You have " + water_goal_reached + " ounces of water until you reach your goal!";
+    }
+
+    // public static void main(String[] args) throws IOException  {
+    //     Scanner userScan;
+    //     File file;
+    //     Scanner fileScan;
+    //     PrintWriter output;
 
 
-        System.out.println("Welcome to the Health Tracker! Please select a button on the menu!");
+    //     System.out.println("Welcome to the Health Tracker! Please select a button on the menu!");
 
-        try {
+    //     try {
 
-            userScan = new Scanner(System.in);
+    //         userScan = new Scanner(System.in);
 
-            Menu();
-            int selection = Integer.parseInt(userScan.nextLine());
+    //         Menu();
+    //         int selection = Integer.parseInt(userScan.nextLine());
 
-            while (selection < 4 && selection > 0) {
+    //         while (selection < 4 && selection > 0) {
                 
-                if (selection == 1) {
-                    System.out.println("What would you like to save the file as?\t");
-                    String fileName = userScan.nextLine();
-                    PrintWriter pw = new PrintWriter(fileName); // takes the file name entered and creates the file
-                    // if you enter in the same file name, it overwrites the original data in the file
+    //             if (selection == 1) {
+    //                 System.out.println("What would you like to save the file as?\t");
+    //                 String fileName = userScan.nextLine();
+    //                 PrintWriter pw = new PrintWriter(fileName); // takes the file name entered and creates the file
+    //                 // if you enter in the same file name, it overwrites the original data in the file
 
-                    System.out.println("Enter the date you want the data to be saved on: \t");
-                    String nameGame = userScan.nextLine(); 
+    //                 System.out.println("Enter the date you want the data to be saved on: \t");
+    //                 String nameGame = userScan.nextLine(); 
 
-                    pw.write("Date: " + nameGame + "\n"); // puts the date into the file
+    //                 pw.write("Date: " + nameGame + "\n"); // puts the date into the file
 
-                    System.out.println("Please enter your name: \t");
-                    String name = userScan.nextLine(); 
+    //                 System.out.println("Please enter your name: \t");
+    //                 String name = userScan.nextLine(); 
 
-                    pw.write("\nName: " + name); // puts the name into the file
-
-
-
-                            System.out.println("\nPlease enter your weight in pounds: ");
-                            double weight = userScan.nextDouble();
-                            pw.write("\nWeight: " + weight);
-
-                            System.out.println("\nPlease enter your height in inches: ");
-                            double height = userScan.nextDouble();
-                            pw.write("\nHeight: " + height);
-
-                            System.out.println("\nPlease enter your age: \t");
-                            long age = userScan.nextLong();
-                            pw.write("\nAge: " + age);
+    //                 pw.write("\nName: " + name); // puts the name into the file
 
 
-                            double water_goal = ((weight/2.2)*age)/28.3;
-                            System.out.println("Healthy goal for water consumption: \t" + water_goal);
-                            pw.write("\nHealthy goal for water consumption: " + water_goal);
+
+    //                         System.out.println("\nPlease enter your weight in pounds: ");
+    //                         double weight = userScan.nextDouble();
+    //                         pw.write("\nWeight: " + weight);
+
+    //                         System.out.println("\nPlease enter your height in inches: ");
+    //                         double height = userScan.nextDouble();
+    //                         pw.write("\nHeight: " + height);
+
+    //                         System.out.println("\nPlease enter your age: \t");
+    //                         long age = userScan.nextLong();
+    //                         pw.write("\nAge: " + age);
+
+
+    //                         double water_goal = ((weight/2.2)*age)/28.3;
+    //                         System.out.println("Healthy goal for water consumption: \t" + water_goal);
+    //                         pw.write("\nHealthy goal for water consumption: " + water_goal);
                     
 
-                            double calorie_goal = (10 * (weight / 2.205) + 6.25 * (height * 2.54) - 5 * age + 5) * 1.55;
-                            System.out.println("Healthy goal for calories consumption: \t" + calorie_goal);
-                            pw.write("\nHealthy goal for calorie consumption: " + calorie_goal);
+    //                         double calorie_goal = (10 * (weight / 2.205) + 6.25 * (height * 2.54) - 5 * age + 5) * 1.55;
+    //                         System.out.println("Healthy goal for calories consumption: \t" + calorie_goal);
+    //                         pw.write("\nHealthy goal for calorie consumption: " + calorie_goal);
 
                             
-                            System.out.println("Enter the amount of water in ounces: \t");
-                            long water_intake = userScan.nextLong();
+    //                         System.out.println("Enter the amount of water in ounces: \t");
+    //                         long water_intake = userScan.nextLong();
 
-                            long total_water = water_intake;
+    //                         long total_water = water_intake;
         
                         
-                            pw.write("Water in ounces: " + total_water); // enters the number of water oz into the file
+    //                         pw.write("Water in ounces: " + total_water); // enters the number of water oz into the file
 
-                            double water_goal_reached = water_goal - total_water;
-                            pw.write("\n"); // adds a line
+    //                         double water_goal_reached = water_goal - total_water;
+    //                         pw.write("\n"); // adds a line
 
-                            System.out.println("\nOunces of Water left to reach healthy goal: " + water_goal_reached);
-                            pw.write("\nOunces of Water left to reach healthy goal: " + water_goal_reached);
+    //                         System.out.println("\nOunces of Water left to reach healthy goal: " + water_goal_reached);
+    //                         pw.write("\nOunces of Water left to reach healthy goal: " + water_goal_reached);
 
-                            System.out.println("Enter the amount of calories: \t");
-                            long calorie_intake = userScan.nextLong();
+    //                         System.out.println("Enter the amount of calories: \t");
+    //                         long calorie_intake = userScan.nextLong();
 
-                            long total_calorie = calorie_intake;
+    //                         long total_calorie = calorie_intake;
 
-                            pw.write("Calories: " + total_calorie); // enters the number of water oz into the file
+    //                         pw.write("Calories: " + total_calorie); // enters the number of water oz into the file
 
-                            double calorie_goal_reached = water_goal - total_water;
-                            pw.write("\n"); // adds a line
+    //                         double calorie_goal_reached = water_goal - total_water;
+    //                         pw.write("\n"); // adds a line
 
-                            System.out.println("\nCalories left to reach healthy goal: " + calorie_goal_reached);
-                            pw.write("Calories left to reach healthy goal: " + calorie_goal_reached);
+    //                         System.out.println("\nCalories left to reach healthy goal: " + calorie_goal_reached);
+    //                         pw.write("Calories left to reach healthy goal: " + calorie_goal_reached);
                             
                         
-                            // pw.write("Calories:" + total_calorie); // enters the number of calories into the file
+    //                         // pw.write("Calories:" + total_calorie); // enters the number of calories into the file
 
                     
 
-                    pw.close();
+    //                 pw.close();
                     
 
-                }
+    //             }
 
 
-                Menu();
-                selection = Integer.parseInt(userScan.nextLine());
+    //             Menu();
+    //             selection = Integer.parseInt(userScan.nextLine());
                 
 
-            }
+    //         }
 
 
 
-        } catch (FileNotFoundException e) {
-            System.out.println("** ERROR: File not found **");
-            System.exit(0);
+    //     } catch (FileNotFoundException e) {
+    //         System.out.println("** ERROR: File not found **");
+    //         System.exit(0);
 
-        } catch (NumberFormatException e) {
-            System.out.println("NumberFormatException - Data is saved in the file.");
+    //     } catch (NumberFormatException e) {
+    //         System.out.println("NumberFormatException - Data is saved in the file.");
             
-        }
-    }
+    //     }
+    // }
 
 
-    public static void Menu() {
-        System.out.println("\n ~~ MENU: ~~ \n(1) Create new file \n(2) Validate saved file \n(3) Edit an existing file \n(4) Quit game \n");
-    }
-
-    public double getWaterGoal(double weight, int age) {
-        double water_goal = ((weight/2.2)*age)/28.3;
-        return water_goal;
-    }
-
-    public String waterMath(double water_intake) {
-        double consumed = water_intake;
-        double water_goal_reached = getWaterGoal(weight, age) - consumed;
-        
-        if (water_goal_reached >= consumed) {
-            return "You have reached a healthy amount of water intake!" + water_goal_reached; // return a double
-        }
-        return "You have " + water_goal_reached + " ounces of water until you reach your goal!";
-    }
+    // public static void Menu() {
+    //     System.out.println("\n ~~ MENU: ~~ \n(1) Create new file \n(2) Validate saved file \n(3) Edit an existing file \n(4) Quit game \n");
+    // }
 }

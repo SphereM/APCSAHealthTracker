@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 
 public class NewFileUI extends JPanel {
     public NewFileUI(GUIManager manager) {
