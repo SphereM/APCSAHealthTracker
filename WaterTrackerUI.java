@@ -20,10 +20,10 @@ public class WaterTrackerUI extends JPanel {
         gl.setAutoCreateContainerGaps(true);
 
         JLabel age = new JLabel("Age: " + ageInput, SwingConstants.CENTER);
-        JLabel weight = new JLabel("Weight: " + weightInput + "lbs", SwingConstants.CENTER);
+        JLabel weight = new JLabel("Weight: " + weightInput + " lbs", SwingConstants.CENTER);
         JLabel name = new JLabel(nameInput, SwingConstants.LEFT);
         JLabel date = new JLabel(dateInput, SwingConstants.RIGHT);
-        JLabel waterConsumed = new JLabel("Water consumed: " + consumedInput + " oz", SwingConstants.CENTER);
+        JLabel waterConsumed = new JLabel("Water consumed: " + tracker.roundOne(consumedInput) + " oz", SwingConstants.CENTER);
         JLabel waterGoal = new JLabel("Water Goal: " + tracker.getWaterGoal() + " oz", SwingConstants.CENTER);
         JLabel waterRemaining= new JLabel("Water Remaining: " + tracker.getWaterRemaining() + " oz", SwingConstants.CENTER);
         // it is the same math for the calories tracker except for the original equation used -> gonna close the sessions -> 
