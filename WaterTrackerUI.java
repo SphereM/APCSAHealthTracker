@@ -26,13 +26,9 @@ public class WaterTrackerUI extends JPanel {
         JLabel waterConsumed = new JLabel("Water consumed: " + tracker.roundOne(consumedInput) + " oz", SwingConstants.CENTER);
         JLabel waterGoal = new JLabel("Water Goal: " + tracker.getWaterGoal() + " oz", SwingConstants.CENTER);
         JLabel waterRemaining= new JLabel("Water Remaining: " + tracker.getWaterRemaining() + " oz", SwingConstants.CENTER);
-        // it is the same math for the calories tracker except for the original equation used -> gonna close the sessions -> 
-        // sounds good, need to add another line for the water math to say how much is left,
-        // sine line 20 is about the goal, not how much of the goal is left
 
         // JButton switchButton = new JButton("Switch Trackers");
         
-
         gl.setHorizontalGroup(gl.createParallelGroup(GroupLayout.Alignment.CENTER)
             .addGroup(gl.createSequentialGroup()
                 // additional parameters for centering on window
