@@ -8,7 +8,8 @@ public class WaterTrackerUI extends JPanel {
         Tracker tracker = null;
 
         try {
-            tracker = new Tracker(fileNameInput, dateInput, nameInput, Double.parseDouble(weightInput), 0, Integer.parseInt(ageInput), Double.parseDouble(consumedInput), 0);
+            tracker = new Tracker(fileNameInput, dateInput, nameInput, Double.parseDouble(weightInput), Integer.parseInt(ageInput), 0, Double.parseDouble(consumedInput), 0);
+            //                    fileName,      date,      name,      weight,                          age,                        height, waterConsumed, caloriesConsumed
         } catch (IOException e) {
             System.err.println(e);
         }
@@ -25,25 +26,28 @@ public class WaterTrackerUI extends JPanel {
         JLabel date = new JLabel(dateInput, SwingConstants.RIGHT);
         JLabel waterConsumed = new JLabel("Water Consumed: " + tracker.roundTwo(Double.parseDouble(consumedInput)) + " oz", SwingConstants.CENTER);
         JLabel waterGoal = new JLabel("Water Goal: " + tracker.getWaterGoal() + " oz", SwingConstants.CENTER);
-        JLabel goalMessage = tracker.goalReached() ? 
+        JLabel goalMessage = tracker.waterGoalReached() ? 
             new JLabel("Nice Job! You drank " + Math.abs(tracker.getWaterRemaining()) + " oz over your goal! :)", SwingConstants.CENTER) : 
             new JLabel("You're getting there! " + tracker.getWaterRemaining() + " oz left to drink!", SwingConstants.CENTER);
 
         JButton switchButton = new JButton("Switch Trackers");
-// time to go now
-        switchButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                manager.switchTracker(this);
-            }
-        });
+
+        // switchButton.addActionListener(new ActionListener() {
+        //     @Override
+        //     public void actionPerformed(ActionEvent e) {
+        //         manager.switchTracker(this);
+        //     }
+        // });
         
         gl.setHorizontalGroup(gl.createParallelGroup(GroupLayout.Alignment.CENTER)
-            .addGroup(gl.createParallelGroup(GroupLayout.Alignment.LEADING)
-                // additional parameters for centering on window
-                .addComponent(name, 0, manager.getWidth(), Short.MAX_VALUE)
-                .addComponent(age, 0, manager.getWidth(), Short.MAX_VALUE)
-                .addComponent(date, 0, manager.getWidth(), Short.MAX_VALUE))
+            .addGroup(gl.createSequentialGroup()
+                .addGroup(gl.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    // additional parameters for centering on window
+                    .addComponent(name, 0, manager.getWidth(), Short.MAX_VALUE)
+                    .addComponent(age, 0, manager.getWidth(), Short.MAX_VALUE)
+                    .addComponent(date, 0, manager.getWidth(), Short.MAX_VALUE)))
+                .addGroup(gl.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                    .addComponent(switchButton))
             .addComponent(weight)
             .addComponent(waterConsumed)
             .addComponent(waterGoal)

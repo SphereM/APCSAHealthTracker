@@ -54,8 +54,8 @@ public class Tracker {
         return roundTwo(getCaloriesGoal() - caloriesConsumed);
     }
 
-    public boolean goalReached() { 
-        return (getWaterGoal()-getWaterRemaining()) <= 0;
+    public boolean waterGoalReached() { 
+        return (getWaterGoal()-waterConsumed) <= 0;
     }
 
     public boolean goalCaloriesReached() { 
