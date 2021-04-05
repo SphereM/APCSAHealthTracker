@@ -8,16 +8,18 @@ import java.lang.Math;
 
 public class Tracker {
     String fileName, date, name;
-    double weight, consumed;
+    double weight, height, waterConsumed, caloriesConsumed;
     int age;
 
-    public Tracker(String fileName, String date, String name, double weight, int age, double consumed) throws IOException {
+    public Tracker(String fileName, String date, String name, double weight, int age, double height, double waterConsumed, double caloriesConsumed) throws IOException {
         this.fileName = fileName;
         this.date = date;
         this.name = name;
         this.weight = weight;
         this.age = age;
-        this.consumed = consumed;
+        this.height = height;
+        this.waterConsumed = waterConsumed;
+        this.caloriesConsumed = caloriesConsumed;
 
         PrintWriter pw = new PrintWriter(new File(fileName + ".txt"));
 
@@ -26,27 +28,42 @@ public class Tracker {
         pw.write("Name: " + name + "\n");
         pw.write("Weight: " + weight + "\n");
         pw.write("Age: " + age + "\n");
-        pw.write("Goal: " + getWaterGoal() + "\n");
-        pw.write("Water Consumed: " + consumed + "\n");
+        pw.write("Height: " + height + "\n");
+        pw.write("Water Goal: " + getWaterGoal() + "\n");
+        pw.write("Calories Goal: " + getCaloriesGoal() + "\n");
+        pw.write("Water Consumed (Oz): " + waterConsumed + "\n");
+        pw.write("Calories Consumed: " + caloriesConsumed + "\n");
 
         pw.close();    
     }
 
     
     public double getWaterGoal() {
-        return roundOne(((weight/2.2)*age)/28.3);
+        return roundTwo(((weight/2.2)*age)/28.3);
+    }
+
+    public double getCaloriesGoal() {
+        return roundTwo((10*(weight/2.205) + 6.25*(height*2.54) - 5*age + 5) * 1.55);
     }
 
     public double getWaterRemaining() {
-        return roundOne(getWaterGoal() - consumed);
-        
-        // Responses: 
-        // "You have reached a healthy amount of water intake!" + water_goal_reached;
-        // "You have " + water_goal_reached + " ounces of water until you reach your goal!";
+        return roundTwo(getWaterGoal() - waterConsumed);
     }
 
+    public double getCaloriesRemaining() {
+        return roundTwo(getCaloriesGoal() - caloriesConsumed);
+    }
+
+    public boolean goalReached() { 
+        return (getWaterGoal()-getWaterRemaining()) <= 0;
+    }
+
+    public boolean goalCaloriesReached() { 
+        return (getCaloriesGoal()-getCaloriesRemaining()) <= 0;
+    }
+    
     // Round to 2 decimal spaces
-    public double roundOne(double num) {
+    public double roundTwo(double num) {
         return Math.round(num*10.0)/10.0;
     }
 

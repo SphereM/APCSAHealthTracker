@@ -1,7 +1,5 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
-import java.io.IOException;
 
 public class NewFileUI extends JPanel {
     public NewFileUI(GUIManager manager) {
@@ -45,7 +43,7 @@ public class NewFileUI extends JPanel {
                 // String calorieValue = inputCalories.getText(); 
                 String fileName = inputFileName.getText();
 
-                manager.initWaterTrackerUI(fileName, ageValue, weightValue, nameValue, dateValue, waterValue);
+                manager.initTrackerUIs(fileName, ageValue, weightValue, nameValue, dateValue, waterValue);
 
                 // Save debugging for later
                 // try {
