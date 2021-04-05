@@ -3,6 +3,8 @@ import java.awt.*;
 import java.io.IOException;
 
 public class GUIManager extends JFrame {
+    JPanel home, newFile, waterTracker, calorieTracker;
+
     private void initWindow() {
         setSize(new Dimension(720, 480));
         setTitle("Health App");
@@ -13,26 +15,30 @@ public class GUIManager extends JFrame {
     }
 
     private void initHomeUI() {
-        JPanel home = new HomeUI(this);
+        home = new HomeUI(this);
         setContentPane(home);
     }
 
     public void initNewFileUI() {
-        JPanel newFile = new NewFileUI(this);
+        newFile = new NewFileUI(this);
         setContentPane(newFile);
         revalidate();
     }
 
-    public void initWaterTrackerUI(String fileNameInput, String ageInput, String weightInput, String nameInput, String dateInput, String consumedInput) {
-        JPanel waterTracker = new WaterTrackerUI(this, fileNameInput, ageInput, weightInput, nameInput, dateInput, consumedInput);
+    public void initTrackerUIs(String fileNameInput, String ageInput, String weightInput, String nameInput, String dateInput, String consumedInput) {
+        waterTracker = new WaterTrackerUI(this, fileNameInput, ageInput, weightInput, nameInput, dateInput, consumedInput);
+        // JPanel calorieTracker = new CalorieTrackerUI();
         setContentPane(waterTracker);
         revalidate();
     }
 
-    // public void switchPanel(JPanel panel) {
-    //     setContentPane(panel);
-    //     revalidate();
-    // }
+    // // fancy stuff maybe idk
+    public void switchTracker(JPanel tracker) { // probably bad practice but whatever
+        if (tracker.equals(waterTracker)) { setContentPane(calorieTracker); } 
+        else if (tracker.equals(calorieTracker)) { setContentPane(waterTracker); }
+
+        revalidate();
+    }
 
     public GUIManager() {
         initWindow();
