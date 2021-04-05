@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 
 public class GUIManager extends JFrame {
     JPanel home, newFile, waterTracker, calorieTracker;
@@ -32,13 +31,13 @@ public class GUIManager extends JFrame {
         revalidate();
     }
 
-    // // fancy stuff maybe idk
-    public void switchTracker(JPanel tracker) { // probably bad practice but whatever
-        if (tracker.equals(waterTracker)) { setContentPane(calorieTracker); } 
-        else if (tracker.equals(calorieTracker)) { setContentPane(waterTracker); }
+    // // // fancy stuff maybe idk
+    // public void switchTracker(JPanel tracker) { // probably bad practice but whatever
+    //     if (tracker.equals(waterTracker)) { setContentPane(calorieTracker); } 
+    //     else if (tracker.equals(calorieTracker)) { setContentPane(waterTracker); }
 
-        revalidate();
-    }
+    //     revalidate();
+    // }
 
     public GUIManager() {
         initWindow();
