@@ -1,3 +1,4 @@
+// Remove the things that you don't ever use, check over everything again
 import java.util.Scanner;
 import javax.lang.model.util.ElementScanner6;
 import java.util.ArrayList;
