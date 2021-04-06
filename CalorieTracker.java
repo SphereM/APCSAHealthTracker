@@ -1,58 +1,61 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.io.IOException;
+import java.util.Scanner;
+import javax.lang.model.util.ElementScanner6;
+import java.util.ArrayList;
+import java.util.Random;
+import java.io.*;
+import java.lang.NumberFormatException;
+import java.lang.Math;
 
-public class CalorieTrackerUI extends JPanel {
+public class CalorieTracker {
+    String fileName, date, name;
+    double consumed, height, weight;
+    int age;
 
-    public CalorieTrackerUI(GUIManager manager, String fileNameInput, String ageInput, String weightInput, String nameInput, String dateInput, String heightInput, String consumedCaloriesInput) {
-        Tracker tracker = null;
-        
-        try { // The constructor Tracker(String, String, String, double, int, double) is undefined
-            tracker = new CalorieTracker(fileNameInput, dateInput, nameInput, Double.parseDouble(weightInput), Integer.parseInt(ageInput), Double.parseDouble(heightInput), Double.parseDouble(consumedInput));
-        } catch (IOException e) {
-            System.err.println(e);
-        }
+    public CalorieTracker(String fileName, String date, String name, int age, double height, double weight, double consumed) throws IOException {
+        this.fileName = fileName;
+        this.date = date;
+        this.name = name;
+        this.age = age;
+        this.height = height;
+        this.weight = weight;
+        this.consumed = consumed;
 
-        GroupLayout gl = new GroupLayout(this);
-        setLayout(gl);
+        PrintWriter pw = new PrintWriter(new File(fileName + ".txt"));
 
-        gl.setAutoCreateGaps(true);
-        gl.setAutoCreateContainerGaps(true);
+        // Only write relevant information for demo
+        pw.write("Date: " + date + "\n");
+        pw.write("Name: " + name + "\n");
+        pw.write("Age: " + age + "\n");
+        pw.write("Height (in.): " + height + "\n");
+        pw.write("Weight (lbs.): " + weight + "\n");
+        pw.write("Goal: " + getCaloriesGoal() + "\n");
+        pw.write("Water Consumed (oz.): " + consumed + "\n");
+        pw.write("Calories Consumed: " + consumed + "\n");
 
-        JLabel age = new JLabel("Age: " + ageInput + " years old", SwingConstants.CENTER);
-        JLabel weight = new JLabel("Weight: " + weightInput + " lbs", SwingConstants.CENTER);
-        JLabel height = new JLabel("Height: " + heightInput + " inches", SwingConstants.CENTER);
-        JLabel name = new JLabel(nameInput, SwingConstants.LEFT);
-        JLabel date = new JLabel(dateInput, SwingConstants.RIGHT);
-        JLabel waterConsumed = new JLabel("Calories Consumed: " + tracker.roundTwo(Double.parseDouble(consumedCaloriesInput)) + " calories", SwingConstants.CENTER);
-        JLabel waterGoal = new JLabel("Calories Goal: " + tracker.getCaloriesGoal() + " oz", SwingConstants.CENTER);
-        JLabel waterRemaining = new JLabel("Calories Remaining: " + tracker.getCaloriesRemaining() + " oz", SwingConstants.CENTER);
-
-        // Wait hold, there's two CalorieTracker UIs
-        // JButton switchButton = new JButton("Switch Trackers");
-        
-        gl.setHorizontalGroup(gl.createParallelGroup(GroupLayout.Alignment.CENTER)
-            .addGroup(gl.createSequentialGroup()
-                // additional parameters for centering on window
-                .addComponent(name, 0, manager.getWidth(), Short.MAX_VALUE)
-                .addComponent(age, 0, manager.getWidth(), Short.MAX_VALUE)
-                .addComponent(date, 0, manager.getWidth(), Short.MAX_VALUE))
-            .addComponent(weight)
-            .addComponent(height)
-            .addComponent(caloriesConsumed)
-            .addComponent(caloriesGoal)
-            .addComponent(caloriesRemaining));
-
-        gl.setVerticalGroup(gl.createSequentialGroup()
-            .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                .addComponent(name)
-                .addComponent(age)
-                .addComponent(date))
-            .addComponent(weight)
-            .addComponent(height)
-            .addComponent(caloriesConsumed)
-            .addComponent(caloriesGoal)
-            .addComponent(caloriesRemaining));
+        pw.close();    
     }
+
+
+    public double getCaloriesGoal() {
+        return roundTwo(10*(weight/2.205) + 6.25*(height*2.54) - 5*age + 5) * 1.55;
+    }
+
+    public double getCaloriesRemaining() {
+        return roundTwo(getCaloriesGoal() - consumed);
+        
+        // Responses: 
+        // "You have reached a healthy amount of water intake!" + water_goal_reached;
+        // "You have " + water_goal_reached + " ounces of water until you reach your goal!";
+    }
+
+    public boolean goalCaloriesReached() { 
+        return (getCaloriesGoal()-getCaloriesRemaining()) <= 0;
+    }
+
+    // calories math   
+    public double roundTwo(double num) {
+        return Math.round(num*10.0)/10.0; 
+    }
+
+
 }

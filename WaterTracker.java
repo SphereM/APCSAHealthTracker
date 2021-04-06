@@ -11,13 +11,12 @@ public class WaterTracker {
     double weight, consumed;
     int age;
 
-    public WaterTracker(String fileName, String date, String name, double weight, int age, double height, double consumed) throws IOException {
+    public WaterTracker(String fileName, String date, String name, double weight, int age, double consumed) throws IOException {
         this.fileName = fileName;
         this.date = date;
         this.name = name;
         this.weight = weight;
         this.age = age;
-        this.height = height;
         this.consumed = consumed;
 
         PrintWriter pw = new PrintWriter(new File(fileName + ".txt"));
@@ -25,11 +24,10 @@ public class WaterTracker {
         // Only write relevant information for demo
         pw.write("Date: " + date + "\n");
         pw.write("Name: " + name + "\n");
-        pw.write("Weight: " + weight + "\n");
+        pw.write("Weight (lbs.): " + weight + "\n");
         pw.write("Age: " + age + "\n");
-        pw.write("Height: " + height + "\n");
         pw.write("Goal: " + getWaterGoal() + "\n");
-        pw.write("Water Consumed (Oz): " + consumed + "\n");
+        pw.write("Water Consumed (oz.): " + consumed + "\n");
         pw.write("Calories Consumed: " + consumed + "\n");
 
         pw.close();    
@@ -56,29 +54,6 @@ public class WaterTracker {
     // Round to 2 decimal spaces
     public double roundOne(double num) {
         return Math.round(num*10.0)/10.0;
-    }
-
-
-    public double getCaloriesGoal() {
-        return roundOne(((weight/2.2)*age)/28.3);
-    }
-
-    public double getCaloriesRemaining() {
-        return roundOne(getWaterGoal() - consumed);
-        
-        // Responses: 
-        // "You have reached a healthy amount of water intake!" + water_goal_reached;
-        // "You have " + water_goal_reached + " ounces of water until you reach your goal!";
-    }
-
-    public boolean goalCaloriesReached() { 
-        return (getCaloriesGoal()-getCaloriesRemaining()) <= 0;
-    }
-
-    // calories math
-    public double roundTwo(double num) {
-        return Math.round(10*(weight/2.205) + 6.25*(height*2.54) - 5*age + 5) * 1.55;
-         
     }
 
  
