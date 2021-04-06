@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 
@@ -32,22 +31,20 @@ public class WaterTrackerUI extends JPanel {
 
         JButton switchButton = new JButton("Switch Trackers");
 
-        // switchButton.addActionListener(new ActionListener() {
-        //     @Override
-        //     public void actionPerformed(ActionEvent e) {
-        //         manager.switchTracker(this);
-        //     }
-        // });
+        switchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                manager.switchTracker();
+            }
+        });
         
         gl.setHorizontalGroup(gl.createParallelGroup(GroupLayout.Alignment.CENTER)
             .addGroup(gl.createSequentialGroup()
                 .addGroup(gl.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    // additional parameters for centering on window
                     .addComponent(name, 0, manager.getWidth(), Short.MAX_VALUE)
                     .addComponent(age, 0, manager.getWidth(), Short.MAX_VALUE)
-                    .addComponent(date, 0, manager.getWidth(), Short.MAX_VALUE)))
-                .addGroup(gl.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                    .addComponent(switchButton))
+                    .addComponent(date, 0, manager.getWidth(), Short.MAX_VALUE)
+                    .addComponent(switchButton)))
             .addComponent(weight)
             .addComponent(waterConsumed)
             .addComponent(waterGoal)
@@ -57,7 +54,8 @@ public class WaterTrackerUI extends JPanel {
             .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE)
                 .addComponent(name)
                 .addComponent(age)
-                .addComponent(date))
+                .addComponent(date)
+                .addComponent(switchButton))
             .addComponent(weight)
             .addComponent(waterConsumed)
             .addComponent(waterGoal)
