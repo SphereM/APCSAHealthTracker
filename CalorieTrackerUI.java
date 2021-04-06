@@ -1,15 +1,15 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 
 public class CalorieTrackerUI extends JPanel {
 
-    public CalorieTrackerUI(GUIManager manager, String fileNameInput, String ageInput, String weightInput, String nameInput, String dateInput, String heightInput, String consumedInput) {
+    public CalorieTrackerUI(GUIManager manager, String fileNameInput, String ageInput, String heightInput, String nameInput, String dateInput, String consumedInput) {
         Tracker tracker = null;
         
-        try { // Redlining: CalorieTracker cannot be resolved to a type
-            tracker = new CalorieTracker(fileNameInput, dateInput, nameInput, Double.parseDouble(weightInput), Integer.parseInt(ageInput), Double.parseDouble(heightInput), Double.parseDouble(consumedInput));
+        try {
+            tracker = new Tracker(fileNameInput, dateInput, nameInput, -1, Integer.parseInt(ageInput), Double.parseDouble(heightInput), -1, Double.parseDouble(consumedInput));
+            //                    fileName,      date,      name,      weight, age,                      height,                          waterConsumed, caloriesConsumed
         } catch (IOException e) {
             System.err.println(e);
         }
@@ -21,35 +21,45 @@ public class CalorieTrackerUI extends JPanel {
         gl.setAutoCreateContainerGaps(true);
 
         JLabel age = new JLabel("Age: " + ageInput, SwingConstants.CENTER);
-        JLabel weight = new JLabel("Weight: " + weightInput + " lbs", SwingConstants.CENTER);
         JLabel height = new JLabel("Height: " + heightInput + " lbs", SwingConstants.CENTER);
         JLabel name = new JLabel(nameInput, SwingConstants.LEFT);
         JLabel date = new JLabel(dateInput, SwingConstants.RIGHT);
-        JLabel waterConsumed = new JLabel("Calories Consumed: " + tracker.roundTwo(Double.parseDouble(consumedInput)) + " oz", SwingConstants.CENTER);
-        JLabel waterGoal = new JLabel("Calories Goal: " + tracker.getCaloriesGoal() + " oz", SwingConstants.CENTER);
-        JLabel waterRemaining = new JLabel("Calories Remaining: " + tracker.getCaloriesRemaining() + " oz", SwingConstants.CENTER);
+        JLabel caloriesConsumed = new JLabel("Calories Consumed: " + tracker.roundTwo(Double.parseDouble(consumedInput)) + " cal", SwingConstants.CENTER);
+        JLabel caloriesGoal = new JLabel("Calories Goal: " + tracker.getCaloriesGoal() + " cal", SwingConstants.CENTER);
+        JLabel goalMessage = tracker.waterGoalReached() ? 
+            new JLabel("Nice Job! You consumed " + Math.abs(tracker.getCaloriesRemaining()) + " calories over your goal! :)", SwingConstants.CENTER) : 
+            new JLabel("You're getting there! " + tracker.getCaloriesRemaining() + " calories left to consume!", SwingConstants.CENTER);
 
-        // JButton switchButton = new JButton("Switch Trackers");
+        JButton switchButton = new JButton("Switch Trackers");
+
+        switchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                manager.switchTracker();
+            }
+        });
         
         gl.setHorizontalGroup(gl.createParallelGroup(GroupLayout.Alignment.CENTER)
             .addGroup(gl.createSequentialGroup()
                 // additional parameters for centering on window
                 .addComponent(name, 0, manager.getWidth(), Short.MAX_VALUE)
                 .addComponent(age, 0, manager.getWidth(), Short.MAX_VALUE)
-                .addComponent(date, 0, manager.getWidth(), Short.MAX_VALUE))
-            .addComponent(weight)
-            .addComponent(waterConsumed)
-            .addComponent(waterGoal)
-            .addComponent(waterRemaining));
+                .addComponent(date, 0, manager.getWidth(), Short.MAX_VALUE)
+                .addComponent(switchButton))
+            .addComponent(height)
+            .addComponent(caloriesConsumed)
+            .addComponent(caloriesGoal)
+            .addComponent(goalMessage));
 
         gl.setVerticalGroup(gl.createSequentialGroup()
             .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE)
                 .addComponent(name)
                 .addComponent(age)
-                .addComponent(date))
-            .addComponent(weight)
-            .addComponent(waterConsumed)
-            .addComponent(waterGoal)
-            .addComponent(waterRemaining));
+                .addComponent(date)
+                .addComponent(switchButton))
+            .addComponent(height)
+            .addComponent(caloriesConsumed)
+            .addComponent(caloriesGoal)
+            .addComponent(goalMessage));
     }
 }
