@@ -23,7 +23,8 @@ public class FileEditUI extends JPanel {
             try {
               BufferedReader input = new BufferedReader(new InputStreamReader(
                   new FileInputStream(file)));
-              text.read(input, "READING FILE :-)");
+     
+             text.read(input, "READING FILE :-)");
             } catch (Exception e) {
               e.printStackTrace();
             }
