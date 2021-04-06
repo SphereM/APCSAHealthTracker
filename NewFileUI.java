@@ -43,7 +43,7 @@ public class NewFileUI extends JPanel {
                 String calorieValue = inputCalories.getText(); 
                 String fileName = inputFileName.getText();
 
-                manager.initTrackerUIs(fileName, ageValue, weightValue, nameValue, dateValue, waterValue);
+                manager.initTrackerUIs(fileName, ageValue, weightValue, heightValue, nameValue, dateValue, waterValue, calorieValue);
 
                 // Save debugging for later
                 // try {
