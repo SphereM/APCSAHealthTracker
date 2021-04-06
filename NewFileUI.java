@@ -13,20 +13,20 @@ public class NewFileUI extends JPanel {
         JLabel name = new JLabel("Input Name: ", SwingConstants.RIGHT);
         JLabel date = new JLabel("Input Date (mm/dd/yy):", SwingConstants.RIGHT);
         JLabel age = new JLabel("Input Age:", SwingConstants.RIGHT);
-        // JLabel height = new JLabel("Input Height (in)", SwingConstants.RIGHT);
+        JLabel height = new JLabel("Input Height (in)", SwingConstants.RIGHT);
         JLabel weight = new JLabel("Input Weight (lbs)", SwingConstants.RIGHT);
         JLabel water = new JLabel("Input Water Consumed (fl oz):", SwingConstants.RIGHT);
-        // JLabel calories = new JLabel("Input calories consumed:", SwingConstants.RIGHT);
+        JLabel calories = new JLabel("Input calories consumed:", SwingConstants.RIGHT);
         JLabel file = new JLabel("Input Save File Name:", SwingConstants.RIGHT);
-        // JLabel error = new JLabel("", SwingConstants.CENTER);
+        JLabel error = new JLabel("", SwingConstants.CENTER);
         
         JTextField inputName = new JTextField();
         JTextField inputDate = new JTextField();
         JTextField inputAge = new JTextField();
-        // JTextField inputHeight = new JTextField();
+        JTextField inputHeight = new JTextField();
         JTextField inputWeight = new JTextField();
         JTextField inputWater = new JTextField();
-        // JTextField inputCalories = new JTextField();
+        JTextField inputCalories = new JTextField();
         JTextField inputFileName = new JTextField();
 
         JButton submitButton = new JButton("Submit");
@@ -37,10 +37,10 @@ public class NewFileUI extends JPanel {
                 String nameValue = inputName.getText();
                 String dateValue = inputDate.getText();
                 String ageValue = inputAge.getText();
-                // String heightValue = inputHeight.getText();
+                String heightValue = inputHeight.getText();
                 String weightValue = inputWeight.getText();
                 String waterValue = inputWater.getText();
-                // String calorieValue = inputCalories.getText(); 
+                String calorieValue = inputCalories.getText(); 
                 String fileName = inputFileName.getText();
 
                 manager.initTrackerUIs(fileName, ageValue, weightValue, nameValue, dateValue, waterValue);
@@ -61,19 +61,19 @@ public class NewFileUI extends JPanel {
                     .addComponent(name)
                     .addComponent(date)
                     .addComponent(age)
-                    // .addComponent(height)
+                    .addComponent(height)
                     .addComponent(weight)
                     .addComponent(water)
-                    // .addComponent(calories)
+                    .addComponent(calories)
                     .addComponent(file))
                 .addGroup(gl.createParallelGroup(GroupLayout.Alignment.LEADING) // Align to left
                     .addComponent(inputName)
                     .addComponent(inputDate)
                     .addComponent(inputAge)
-                    // .addComponent(inputHeight)
+                    .addComponent(inputHeight)
                     .addComponent(inputWeight)
                     .addComponent(inputWater)
-                    // .addComponent(inputCalories)
+                    .addComponent(inputCalories)
                     .addComponent(inputFileName)))
             .addComponent(submitButton)
             // .addComponent(error)
@@ -90,18 +90,18 @@ public class NewFileUI extends JPanel {
             .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE)
                 .addComponent(age)
                 .addComponent(inputAge))
-            // .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE)
-            //     .addComponent(height)
-            //     .addComponent(inputHeight))
+            .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addComponent(height)
+                .addComponent(inputHeight))
             .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE)
                 .addComponent(weight)
                 .addComponent(inputWeight))
             .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE)
                 .addComponent(water)
                 .addComponent(inputWater))
-            // .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE)
-            //     .addComponent(calories)
-            //     .addComponent(inputCalories))
+            .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addComponent(calories)
+                .addComponent(inputCalories))
             .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE)
                 .addComponent(file)
                 .addComponent(inputFileName))
