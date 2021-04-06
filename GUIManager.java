@@ -2,7 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GUIManager extends JFrame {
-    JPanel home, newFile, waterTracker, calorieTracker;
+    JPanel home, newFile, editFile, waterTracker, calorieTracker;
+    boolean isWaterTracker;
 
     private void initWindow() {
         setSize(new Dimension(720, 480));
@@ -24,20 +25,32 @@ public class GUIManager extends JFrame {
         revalidate();
     }
 
-    public void initTrackerUIs(String fileNameInput, String ageInput, String weightInput, String nameInput, String dateInput, String consumedInput) {
-        waterTracker = new WaterTrackerUI(this, fileNameInput, ageInput, weightInput, nameInput, dateInput, consumedInput);
-        // JPanel calorieTracker = new CalorieTrackerUI();
+    public void editFileUI() {
+        editFile = new FileEditUI(this);
+        setContentPane(editFile);
+        revalidate();
+    }
+
+    public void initTrackerUIs(String fileNameInput, String ageInput, String weightInput, String heightInput, String nameInput, String dateInput, String waterInput, String caloriesInput) {
+        waterTracker = new WaterTrackerUI(this, fileNameInput, ageInput, weightInput, nameInput, dateInput, waterInput);
+        calorieTracker = new CalorieTrackerUI(this, fileNameInput, ageInput, heightInput, nameInput, dateInput, caloriesInput);
+        isWaterTracker = true;
         setContentPane(waterTracker);
         revalidate();
     }
 
     // // // fancy stuff maybe idk
-    // public void switchTracker(JPanel tracker) { // probably bad practice but whatever
-    //     if (tracker.equals(waterTracker)) { setContentPane(calorieTracker); } 
-    //     else if (tracker.equals(calorieTracker)) { setContentPane(waterTracker); }
+    public void switchTracker() { // probably bad practice but whatever
+        if (isWaterTracker) {
+            setContentPane(calorieTracker);
+            isWaterTracker = false;
+        } else {
+            setContentPane(waterTracker);
+            isWaterTracker = true;
+        }
 
-    //     revalidate();
-    // }
+        revalidate();
+    }
 
     public GUIManager() {
         initWindow();
