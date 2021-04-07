@@ -6,7 +6,7 @@ import java.io.*;
 import java.lang.NumberFormatException;
 import java.lang.Math;
 
-public class WaterTracker {
+public class WaterTracker { // extend from Tracker.java later
     String fileName, date, name;
     double weight, consumed;
     int age;
@@ -40,10 +40,6 @@ public class WaterTracker {
 
     public double getWaterRemaining() {
         return roundOne(getWaterGoal() - consumed);
-        
-        // Responses: 
-        // "You have reached a healthy amount of water intake!" + water_goal_reached;
-        // "You have " + water_goal_reached + " ounces of water until you reach your goal!";
     }
 
     public boolean goalReached() { 

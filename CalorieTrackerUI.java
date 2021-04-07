@@ -20,13 +20,14 @@ public class CalorieTrackerUI extends JPanel {
         gl.setAutoCreateGaps(true);
         gl.setAutoCreateContainerGaps(true);
 
-        JLabel age = new JLabel("Age: " + ageInput, SwingConstants.CENTER);
+        JLabel title = new JLabel("Calorie Tracker", SwingConstants.CENTER);
+        JLabel age = new JLabel("Age: " + ageInput + " years old", SwingConstants.CENTER);
         JLabel height = new JLabel("Height: " + heightInput + " lbs", SwingConstants.CENTER);
         JLabel name = new JLabel(nameInput, SwingConstants.LEFT);
         JLabel date = new JLabel(dateInput, SwingConstants.RIGHT);
         JLabel caloriesConsumed = new JLabel("Calories Consumed: " + tracker.roundTwo(Double.parseDouble(consumedInput)) + " cal", SwingConstants.CENTER);
         JLabel caloriesGoal = new JLabel("Calories Goal: " + tracker.getCaloriesGoal() + " cal", SwingConstants.CENTER);
-        JLabel goalMessage = tracker.waterGoalReached() ? 
+        JLabel goalMessage = tracker.goalCaloriesReached() ? 
             new JLabel("Nice Job! You consumed " + Math.abs(tracker.getCaloriesRemaining()) + " calories over your goal! :)", SwingConstants.CENTER) : 
             new JLabel("You're getting there! " + tracker.getCaloriesRemaining() + " calories left to consume!", SwingConstants.CENTER);
 
@@ -41,7 +42,8 @@ public class CalorieTrackerUI extends JPanel {
         
         gl.setHorizontalGroup(gl.createParallelGroup(GroupLayout.Alignment.CENTER)
             .addGroup(gl.createSequentialGroup()
-                // additional parameters for centering on window
+                .addComponent(title))
+            .addGroup(gl.createSequentialGroup()
                 .addComponent(name, 0, manager.getWidth(), Short.MAX_VALUE)
                 .addComponent(age, 0, manager.getWidth(), Short.MAX_VALUE)
                 .addComponent(date, 0, manager.getWidth(), Short.MAX_VALUE)
@@ -52,6 +54,8 @@ public class CalorieTrackerUI extends JPanel {
             .addComponent(goalMessage));
 
         gl.setVerticalGroup(gl.createSequentialGroup()
+            .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addComponent(title))
             .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE)
                 .addComponent(name)
                 .addComponent(age)

@@ -19,10 +19,11 @@ public class WaterTrackerUI extends JPanel {
         gl.setAutoCreateGaps(true);
         gl.setAutoCreateContainerGaps(true);
 
+        JLabel title = new JLabel("Water Tracker", SwingConstants.CENTER);
         JLabel age = new JLabel("Age: " + ageInput + " years old", SwingConstants.CENTER);
         JLabel weight = new JLabel("Weight: " + weightInput + " lbs", SwingConstants.CENTER);
-        JLabel name = new JLabel(nameInput, SwingConstants.LEFT);
-        JLabel date = new JLabel(dateInput, SwingConstants.RIGHT);
+        JLabel name = new JLabel(nameInput, SwingConstants.CENTER);
+        JLabel date = new JLabel(dateInput, SwingConstants.CENTER);
         JLabel waterConsumed = new JLabel("Water Consumed: " + tracker.roundTwo(Double.parseDouble(consumedInput)) + " oz", SwingConstants.CENTER);
         JLabel waterGoal = new JLabel("Water Goal: " + tracker.getWaterGoal() + " oz", SwingConstants.CENTER);
         JLabel goalMessage = tracker.waterGoalReached() ? 
@@ -40,17 +41,19 @@ public class WaterTrackerUI extends JPanel {
         
         gl.setHorizontalGroup(gl.createParallelGroup(GroupLayout.Alignment.CENTER)
             .addGroup(gl.createSequentialGroup()
-                .addGroup(gl.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(name, 0, manager.getWidth(), Short.MAX_VALUE)
-                    .addComponent(age, 0, manager.getWidth(), Short.MAX_VALUE)
-                    .addComponent(date, 0, manager.getWidth(), Short.MAX_VALUE)
-                    .addComponent(switchButton)))
+                .addComponent(title))
+            .addGroup(gl.createSequentialGroup()
+                .addComponent(name, 0, manager.getWidth()/4, Short.MAX_VALUE)
+                .addComponent(age, 0, manager.getWidth()/4, Short.MAX_VALUE)
+                .addComponent(date, 0, manager.getWidth()/4, Short.MAX_VALUE)
+                .addComponent(switchButton))
             .addComponent(weight)
             .addComponent(waterConsumed)
             .addComponent(waterGoal)
             .addComponent(goalMessage));
 
         gl.setVerticalGroup(gl.createSequentialGroup()
+            .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE))
             .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE)
                 .addComponent(name)
                 .addComponent(age)
@@ -61,4 +64,5 @@ public class WaterTrackerUI extends JPanel {
             .addComponent(waterGoal)
             .addComponent(goalMessage));
     }
+
 }
