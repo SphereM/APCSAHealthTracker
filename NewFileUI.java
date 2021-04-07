@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 
 public class NewFileUI extends JPanel {
@@ -9,15 +10,15 @@ public class NewFileUI extends JPanel {
         gl.setAutoCreateGaps(true);
         gl.setAutoCreateContainerGaps(true);
 
-        JLabel title = new JLabel("Create a new file", SwingConstants.CENTER);
-        JLabel name = new JLabel("Input Name: ", SwingConstants.RIGHT);
-        JLabel date = new JLabel("Input Date (mm/dd/yy):", SwingConstants.RIGHT);
-        JLabel age = new JLabel("Input Age:", SwingConstants.RIGHT);
-        JLabel height = new JLabel("Input Height (in)", SwingConstants.RIGHT);
-        JLabel weight = new JLabel("Input Weight (lbs)", SwingConstants.RIGHT);
-        JLabel water = new JLabel("Input Water Consumed (fl oz):", SwingConstants.RIGHT);
-        JLabel calories = new JLabel("Input calories consumed:", SwingConstants.RIGHT);
-        JLabel file = new JLabel("Input Save File Name:", SwingConstants.RIGHT);
+        JLabel title = new JLabel("Create a New File", SwingConstants.CENTER);
+        JLabel name = new JLabel("What's your name? ", SwingConstants.RIGHT);
+        JLabel date = new JLabel("What's the date? ", SwingConstants.RIGHT);
+        JLabel age = new JLabel("How old are you? ", SwingConstants.RIGHT);
+        JLabel height = new JLabel("What's your height (in)?  ", SwingConstants.RIGHT);
+        JLabel weight = new JLabel("What's your weight (lbs)? ", SwingConstants.RIGHT);
+        JLabel water = new JLabel("How much water did you consumed (fl oz)? ", SwingConstants.RIGHT);
+        JLabel calories = new JLabel("How many calories did you consume? ", SwingConstants.RIGHT);
+        JLabel file = new JLabel("Save File Name? ", SwingConstants.RIGHT);
         JLabel error = new JLabel("", SwingConstants.CENTER);
         
         JTextField inputName = new JTextField();
@@ -30,6 +31,10 @@ public class NewFileUI extends JPanel {
         JTextField inputFileName = new JTextField();
 
         JButton submitButton = new JButton("Submit");
+        submitButton.setBackground(new Color(102, 162, 114));
+        submitButton.setForeground(Color.WHITE);
+        submitButton.setFocusPainted(false);
+        submitButton.setFont(new Font("Roboto", Font.BOLD, 20));
 
         submitButton.addActionListener(new ActionListener() {
             @Override

@@ -5,11 +5,11 @@ import java.awt.event.*;
 public class HomeUI extends JPanel {
     public HomeUI(GUIManager manager) {
         // Defaults to FlowLayout, fine as is
-        JButton newFileButton = new JButton("Create a new file");
-        // JButton existingFileButton = new JButton("Use existing file");
+        JButton newFileButton = new JButton("Create a New File");
+        JButton editFileButton = new JButton("Edit an Existing File");
 
         newFileButton.setPreferredSize(new Dimension(250, 250));
-        // existingFileButton.setPreferredSize(new Dimension(250, 250));
+        editFileButton.setPreferredSize(new Dimension(250, 250));
 
         newFileButton.addActionListener(new ActionListener() {
             @Override
@@ -17,8 +17,25 @@ public class HomeUI extends JPanel {
                 manager.initNewFileUI();
             }
         });
+        editFileButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                manager.initEditFileUI();
+            }
+        });
+
+        // Cool styling stuff
+        newFileButton.setBackground(new Color(102, 162, 114));
+        newFileButton.setForeground(Color.WHITE);
+        newFileButton.setFocusPainted(false);
+        newFileButton.setFont(new Font("Roboto", Font.BOLD, 20));
+        editFileButton.setBackground(new Color(102, 162, 114));
+        editFileButton.setForeground(Color.WHITE);
+        editFileButton.setFocusPainted(false);
+        editFileButton.setFont(new Font("Roboto", Font.BOLD, 20));
+
 
         add(newFileButton);
-        // add(existingFileButton);
+        add(editFileButton);
     }
 }
