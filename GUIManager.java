@@ -25,7 +25,7 @@ public class GUIManager extends JFrame {
         revalidate();
     }
 
-    public void editFileUI() {
+    public void initEditFileUI() {
         editFile = new FileEditUI(this);
         setContentPane(editFile);
         revalidate();
@@ -39,8 +39,7 @@ public class GUIManager extends JFrame {
         revalidate();
     }
 
-    // // // fancy stuff maybe idk
-    public void switchTracker() { // probably bad practice but whatever
+    public void switchTracker() { 
         if (isWaterTracker) {
             setContentPane(calorieTracker);
             isWaterTracker = false;
