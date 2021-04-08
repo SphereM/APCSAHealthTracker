@@ -1,18 +1,9 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
-import java.io.IOException;
 
 public class WaterTrackerUI extends JPanel {
-    public WaterTrackerUI(GUIManager manager, String fileNameInput, String ageInput, String weightInput, String nameInput, String dateInput, String consumedInput) {
-        Tracker tracker = null;
-
-        try {
-            tracker = new Tracker(fileNameInput, dateInput, nameInput, Double.parseDouble(weightInput), Integer.parseInt(ageInput), 0, Double.parseDouble(consumedInput), 0);
-            //                    fileName,      date,      name,      weight,                          age,                        height, waterConsumed, caloriesConsumed
-        } catch (IOException e) {
-            System.err.println(e);
-        }
-
+    public WaterTrackerUI(GUIManager manager, Tracker tracker) {
         GroupLayout gl = new GroupLayout(this);
         setLayout(gl);
 
@@ -20,17 +11,22 @@ public class WaterTrackerUI extends JPanel {
         gl.setAutoCreateContainerGaps(true);
 
         JLabel title = new JLabel("Water Tracker", SwingConstants.CENTER);
-        JLabel age = new JLabel("Age: " + ageInput + " years old", SwingConstants.CENTER);
-        JLabel weight = new JLabel("Weight: " + weightInput + " lbs", SwingConstants.CENTER);
-        JLabel name = new JLabel(nameInput, SwingConstants.CENTER);
-        JLabel date = new JLabel(dateInput, SwingConstants.CENTER);
-        JLabel waterConsumed = new JLabel("Water Consumed: " + tracker.roundTwo(Double.parseDouble(consumedInput)) + " oz", SwingConstants.CENTER);
+        title.setFont(new Font("Roboto", Font.BOLD, 16));
+        JLabel age = new JLabel("Age: " + tracker.getAge() + " years old", SwingConstants.CENTER);
+        JLabel weight = new JLabel("Weight: " + tracker.getWeight() + " lbs", SwingConstants.CENTER);
+        JLabel name = new JLabel(tracker.getName(), SwingConstants.CENTER);
+        JLabel date = new JLabel(tracker.getDate(), SwingConstants.CENTER);
+        JLabel waterConsumed = new JLabel("Water Consumed: " + tracker.getWaterConsumed() + " oz", SwingConstants.CENTER);
         JLabel waterGoal = new JLabel("Water Goal: " + tracker.getWaterGoal() + " oz", SwingConstants.CENTER);
         JLabel goalMessage = tracker.waterGoalReached() ? 
             new JLabel("Nice Job! You drank " + Math.abs(tracker.getWaterRemaining()) + " oz over your goal! :)", SwingConstants.CENTER) : 
             new JLabel("You're getting there! " + tracker.getWaterRemaining() + " oz left to drink!", SwingConstants.CENTER);
 
         JButton switchButton = new JButton("Switch Trackers");
+        switchButton.setBackground(new Color(102, 162, 114));
+        switchButton.setForeground(Color.WHITE);
+        switchButton.setFocusPainted(false);
+        switchButton.setFont(new Font("Roboto", Font.BOLD, 20));
 
         switchButton.addActionListener(new ActionListener() {
             @Override

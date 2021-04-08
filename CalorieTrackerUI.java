@@ -1,19 +1,10 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
-import java.io.IOException;
 
 public class CalorieTrackerUI extends JPanel {
 
-    public CalorieTrackerUI(GUIManager manager, String fileNameInput, String ageInput, String heightInput, String nameInput, String dateInput, String consumedInput) {
-        Tracker tracker = null;
-        
-        try {
-            tracker = new Tracker(fileNameInput, dateInput, nameInput, -1, Integer.parseInt(ageInput), Double.parseDouble(heightInput), -1, Double.parseDouble(consumedInput));
-            //                    fileName,      date,      name,      weight, age,                      height,                          waterConsumed, caloriesConsumed
-        } catch (IOException e) {
-            System.err.println(e);
-        }
-
+    public CalorieTrackerUI(GUIManager manager, Tracker tracker) {
         GroupLayout gl = new GroupLayout(this);
         setLayout(gl);
 
@@ -21,17 +12,22 @@ public class CalorieTrackerUI extends JPanel {
         gl.setAutoCreateContainerGaps(true);
 
         JLabel title = new JLabel("Calorie Tracker", SwingConstants.CENTER);
-        JLabel age = new JLabel("Age: " + ageInput + " years old", SwingConstants.CENTER);
-        JLabel height = new JLabel("Height: " + heightInput + " lbs", SwingConstants.CENTER);
-        JLabel name = new JLabel(nameInput, SwingConstants.LEFT);
-        JLabel date = new JLabel(dateInput, SwingConstants.RIGHT);
-        JLabel caloriesConsumed = new JLabel("Calories Consumed: " + tracker.roundTwo(Double.parseDouble(consumedInput)) + " cal", SwingConstants.CENTER);
+        title.setFont(new Font("Roboto", Font.BOLD, 16));
+        JLabel age = new JLabel("Age: " + tracker.getAge() + " years old", SwingConstants.CENTER);
+        JLabel height = new JLabel("Height: " + tracker.getWeight() + " lbs", SwingConstants.CENTER);
+        JLabel name = new JLabel(tracker.getName(), SwingConstants.LEFT);
+        JLabel date = new JLabel(tracker.getDate(), SwingConstants.RIGHT);
+        JLabel caloriesConsumed = new JLabel("Calories Consumed: " + tracker.getCaloriesConsumed() + " cal", SwingConstants.CENTER);
         JLabel caloriesGoal = new JLabel("Calories Goal: " + tracker.getCaloriesGoal() + " cal", SwingConstants.CENTER);
         JLabel goalMessage = tracker.goalCaloriesReached() ? 
             new JLabel("Nice Job! You consumed " + Math.abs(tracker.getCaloriesRemaining()) + " calories over your goal! :)", SwingConstants.CENTER) : 
             new JLabel("You're getting there! " + tracker.getCaloriesRemaining() + " calories left to consume!", SwingConstants.CENTER);
 
         JButton switchButton = new JButton("Switch Trackers");
+        switchButton.setBackground(new Color(102, 162, 114));
+        switchButton.setForeground(Color.WHITE);
+        switchButton.setFocusPainted(false);
+        switchButton.setFont(new Font("Roboto", Font.BOLD, 20));
 
         switchButton.addActionListener(new ActionListener() {
             @Override
