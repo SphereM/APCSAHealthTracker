@@ -1,8 +1,14 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.lang.NumberFormatException;
 
 public class NewFileUI extends JPanel {
+    JLabel title, name, date, age, height, weight, water, calories, file, errorMessage;
+    JTextField inputName, inputDate, inputAge, inputHeight, inputWeight, inputWater, inputCalories, inputFileName;
+    JButton submitButton;
+    String nameValue, dateValue, ageValue, heightValue, weightValue, waterValue, calorieValue, fileName;
+
     public NewFileUI(GUIManager manager) {
         GroupLayout gl = new GroupLayout(this);
         setLayout(gl);
@@ -10,27 +16,28 @@ public class NewFileUI extends JPanel {
         gl.setAutoCreateGaps(true);
         gl.setAutoCreateContainerGaps(true);
 
-        JLabel title = new JLabel("Create a New File", SwingConstants.CENTER);
-        JLabel name = new JLabel("What's your name? ", SwingConstants.RIGHT);
-        JLabel date = new JLabel("What's the date? ", SwingConstants.RIGHT);
-        JLabel age = new JLabel("How old are you? ", SwingConstants.RIGHT);
-        JLabel height = new JLabel("What's your height (in)?  ", SwingConstants.RIGHT);
-        JLabel weight = new JLabel("What's your weight (lbs)? ", SwingConstants.RIGHT);
-        JLabel water = new JLabel("How much water did you consumed (fl oz)? ", SwingConstants.RIGHT);
-        JLabel calories = new JLabel("How many calories did you consume? ", SwingConstants.RIGHT);
-        JLabel file = new JLabel("Save File Name? ", SwingConstants.RIGHT);
-        JLabel error = new JLabel("", SwingConstants.CENTER);
+        title = new JLabel("Create a New File", SwingConstants.CENTER);
+        title.setFont(new Font("Roboto", Font.BOLD, 16));
+        name = new JLabel("Name: ", SwingConstants.RIGHT);
+        date = new JLabel("Date: ", SwingConstants.RIGHT);
+        age = new JLabel("Age: ", SwingConstants.RIGHT);
+        height = new JLabel("Height (in):  ", SwingConstants.RIGHT);
+        weight = new JLabel("Weight (lbs): ", SwingConstants.RIGHT);
+        water = new JLabel("Water Consumed (oz): ", SwingConstants.RIGHT);
+        calories = new JLabel("Calories Consumed: ", SwingConstants.RIGHT);
+        file = new JLabel("Save FIle Name: ", SwingConstants.RIGHT);
+        errorMessage = new JLabel("", SwingConstants.CENTER);
         
-        JTextField inputName = new JTextField();
-        JTextField inputDate = new JTextField();
-        JTextField inputAge = new JTextField();
-        JTextField inputHeight = new JTextField();
-        JTextField inputWeight = new JTextField();
-        JTextField inputWater = new JTextField();
-        JTextField inputCalories = new JTextField();
-        JTextField inputFileName = new JTextField();
+        inputName = new JTextField();
+        inputDate = new JTextField();
+        inputAge = new JTextField();
+        inputHeight = new JTextField();
+        inputWeight = new JTextField();
+        inputWater = new JTextField();
+        inputCalories = new JTextField();
+        inputFileName = new JTextField();
 
-        JButton submitButton = new JButton("Submit");
+        submitButton = new JButton("Submit");
         submitButton.setBackground(new Color(102, 162, 114));
         submitButton.setForeground(Color.WHITE);
         submitButton.setFocusPainted(false);
@@ -38,24 +45,38 @@ public class NewFileUI extends JPanel {
 
         submitButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                String nameValue = inputName.getText();
-                String dateValue = inputDate.getText();
-                String ageValue = inputAge.getText();
-                String heightValue = inputHeight.getText();
-                String weightValue = inputWeight.getText();
-                String waterValue = inputWater.getText();
-                String calorieValue = inputCalories.getText(); 
-                String fileName = inputFileName.getText();
+            public void actionPerformed(ActionEvent event) {
+                if (inputName.getText().isEmpty() || 
+                    inputDate.getText().isEmpty() || 
+                    inputAge.getText().isEmpty() || 
+                    inputHeight.getText().isEmpty() || 
+                    inputWeight.getText().isEmpty() || 
+                    inputWater.getText().isEmpty() || 
+                    inputCalories.getText().isEmpty() ||
+                    inputFileName.getText().isEmpty())   // if any fields are empty
+                {
+                    errorMessage.setText("One or more fields are empty"); 
+                } else {         
+                    try {
+                
+                    } catch (NumberFormatException e) {
+                        errorMessage.setText("Error: Given values are not in correct format");
+                        System.err.println(e);
+                    }
+                    nameValue = inputName.getText();
+                    dateValue = inputDate.getText();
+                    ageValue = inputAge.getText();
+                    heightValue = inputHeight.getText();
+                    weightValue = inputWeight.getText();
+                    waterValue = inputWater.getText();
+                    calorieValue = inputCalories.getText(); 
+                    fileName = inputFileName.getText(); 
+                    
+                    manager.initTrackerUIs(fileName, ageValue, weightValue, heightValue, nameValue, dateValue, waterValue, calorieValue);
+                }
 
-                manager.initTrackerUIs(fileName, ageValue, weightValue, heightValue, nameValue, dateValue, waterValue, calorieValue);
 
-                // Save debugging for later
-                // try {
-                //     double waterValue = Double.parseDouble(inputWater.getText());
-                // } catch (NumberFormatException error) {
-                //     error.setText("Error: Given values are not in correct format");
-                // }
+
             }
         });
 
@@ -81,7 +102,7 @@ public class NewFileUI extends JPanel {
                     .addComponent(inputCalories)
                     .addComponent(inputFileName)))
             .addComponent(submitButton)
-            // .addComponent(error)
+            .addComponent(errorMessage)
         );
 
         gl.setVerticalGroup(gl.createSequentialGroup()
@@ -111,7 +132,7 @@ public class NewFileUI extends JPanel {
                 .addComponent(file)
                 .addComponent(inputFileName))
             .addComponent(submitButton)
-            // .addComponent(error)
+            .addComponent(errorMessage)
         );
     }    
 }
