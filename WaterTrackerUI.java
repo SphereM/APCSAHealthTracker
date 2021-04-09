@@ -12,7 +12,7 @@ public class WaterTrackerUI extends JPanel {
 
         JLabel title = new JLabel("Water Tracker", SwingConstants.CENTER);
         title.setFont(new Font("Roboto", Font.BOLD, 16));
-        JLabel age = new JLabel("Age: " + tracker.getAge() + " years old", SwingConstants.CENTER);
+        JLabel age = new JLabel(tracker.getAge() + " years old", SwingConstants.CENTER);
         JLabel weight = new JLabel("Weight: " + tracker.getWeight() + " lbs", SwingConstants.CENTER);
         JLabel name = new JLabel(tracker.getName(), SwingConstants.CENTER);
         JLabel date = new JLabel(tracker.getDate(), SwingConstants.CENTER);
@@ -21,12 +21,14 @@ public class WaterTrackerUI extends JPanel {
         JLabel goalMessage = tracker.waterGoalReached() ? 
             new JLabel("Nice Job! You drank " + Math.abs(tracker.getWaterRemaining()) + " oz over your goal! :)", SwingConstants.CENTER) : 
             new JLabel("You're getting there! " + tracker.getWaterRemaining() + " oz left to drink!", SwingConstants.CENTER);
+        goalMessage.setFont(new Font("Roboto", Font.BOLD, 14));
+
 
         JButton switchButton = new JButton("Switch Trackers");
         switchButton.setBackground(new Color(102, 162, 114));
         switchButton.setForeground(Color.WHITE);
         switchButton.setFocusPainted(false);
-        switchButton.setFont(new Font("Roboto", Font.BOLD, 20));
+        switchButton.setFont(new Font("Roboto", Font.BOLD, 12));
 
         switchButton.addActionListener(new ActionListener() {
             @Override

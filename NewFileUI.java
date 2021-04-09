@@ -18,7 +18,7 @@ public class NewFileUI extends JPanel {
         gl.setAutoCreateContainerGaps(true);
 
         title = new JLabel("Create a New File", SwingConstants.CENTER);
-        title.setFont(new Font("Roboto", Font.BOLD, 16));
+        title.setFont(new Font("Roboto", Font.BOLD, 20));
         name = new JLabel("Name: ", SwingConstants.RIGHT);
         date = new JLabel("Date: ", SwingConstants.RIGHT);
         age = new JLabel("Age: ", SwingConstants.RIGHT);
@@ -68,11 +68,11 @@ public class NewFileUI extends JPanel {
                         waterValue = Double.parseDouble(inputWater.getText());
                         calorieValue = Double.parseDouble(inputCalories.getText());
 
+                        manager.initTrackerUIs(fileName, ageValue, weightValue, heightValue, nameValue, dateValue, waterValue, calorieValue);
                     } catch (NumberFormatException e) {
                         errorMessage.setText("Error: Given values are not in correct format");
                     } 
 
-                    manager.initTrackerUIs(fileName, ageValue, weightValue, heightValue, nameValue, dateValue, waterValue, calorieValue);
                 }
             }
         });
