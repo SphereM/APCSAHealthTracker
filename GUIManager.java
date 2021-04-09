@@ -33,9 +33,9 @@ public class GUIManager extends JFrame {
         revalidate();
     }
 
-    public void initTrackerUIs(String fileNameInput, String ageInput, String weightInput, String heightInput, String nameInput, String dateInput, String waterInput, String caloriesInput) {        
+    public void initTrackerUIs(String fileNameInput, int ageInput, double weightInput, double heightInput, String nameInput, String dateInput, double waterInput, double caloriesInput) {        
         try {
-            tracker = new Tracker(fileNameInput, dateInput, nameInput, Double.parseDouble(weightInput), Integer.parseInt(ageInput), Double.parseDouble(heightInput), Double.parseDouble(waterInput), Double.parseDouble(caloriesInput));
+            tracker = new Tracker(fileNameInput, dateInput, nameInput, weightInput, ageInput, heightInput, waterInput, caloriesInput);
         } catch (IOException e) {
             System.err.println(e);
         }
