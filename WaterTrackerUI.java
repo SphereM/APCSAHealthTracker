@@ -49,7 +49,8 @@ public class WaterTrackerUI extends JPanel {
             .addComponent(goalMessage));
 
         gl.setVerticalGroup(gl.createSequentialGroup()
-            .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE))
+            .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addComponent(title))
             .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE)
                 .addComponent(name)
                 .addComponent(age)
