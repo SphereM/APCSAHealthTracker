@@ -1,13 +1,14 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.lang.NumberFormatException;
 
 public class NewFileUI extends JPanel {
     JLabel title, name, date, age, height, weight, water, calories, file, errorMessage;
     JTextField inputName, inputDate, inputAge, inputHeight, inputWeight, inputWater, inputCalories, inputFileName;
     JButton submitButton;
-    String nameValue, dateValue, ageValue, heightValue, weightValue, waterValue, calorieValue, fileName;
+    String nameValue, dateValue, fileName;
+    int ageValue;
+    double heightValue, weightValue, waterValue, calorieValue;
 
     public NewFileUI(GUIManager manager) {
         GroupLayout gl = new GroupLayout(this);
@@ -58,25 +59,21 @@ public class NewFileUI extends JPanel {
                     errorMessage.setText("One or more fields are empty"); 
                 } else {         
                     try {
-                
+                        nameValue = inputName.getText();
+                        dateValue = inputDate.getText();
+                        fileName = inputFileName.getText(); 
+                        ageValue = Integer.parseInt(inputAge.getText());
+                        heightValue = Double.parseDouble(inputHeight.getText());
+                        weightValue = Double.parseDouble(inputWeight.getText());
+                        waterValue = Double.parseDouble(inputWater.getText());
+                        calorieValue = Double.parseDouble(inputCalories.getText());
+
                     } catch (NumberFormatException e) {
                         errorMessage.setText("Error: Given values are not in correct format");
-                        System.err.println(e);
-                    }
-                    nameValue = inputName.getText();
-                    dateValue = inputDate.getText();
-                    ageValue = inputAge.getText();
-                    heightValue = inputHeight.getText();
-                    weightValue = inputWeight.getText();
-                    waterValue = inputWater.getText();
-                    calorieValue = inputCalories.getText(); 
-                    fileName = inputFileName.getText(); 
-                    
+                    } 
+
                     manager.initTrackerUIs(fileName, ageValue, weightValue, heightValue, nameValue, dateValue, waterValue, calorieValue);
                 }
-
-
-
             }
         });
 
