@@ -16,17 +16,17 @@ public class Tracker {
         this.waterConsumed = waterConsumed;
         this.caloriesConsumed = caloriesConsumed;
 
-        PrintWriter pw = new PrintWriter(new File(fileName + ".txt"));
+        FileWriter fw = new FileWriter(new File("lib/"+ fileName + ".txt"));
 
-        pw.write("Date: " + date + "\n");
-        pw.write("Name: " + name + "\n");
-        pw.write("Weight: " + weight + "\n");
-        pw.write("Height: " + height + "\n");
-        pw.write("Age: " + age + "\n");
-        pw.write("Water Consumed: " + waterConsumed + "\n");
-        pw.write("Calories Consumed: " + caloriesConsumed + "\n");
+        fw.write("Date: " + date + "\n");
+        fw.write("Name: " + name + "\n");
+        fw.write("Weight: " + weight + "\n");
+        fw.write("Height: " + height + "\n");
+        fw.write("Age: " + age + "\n");
+        fw.write("Water Consumed: " + waterConsumed + "\n");
+        fw.write("Calories Consumed: " + caloriesConsumed + "\n");
 
-        pw.close();    
+        fw.close();    
     }
 
     // Water Math
