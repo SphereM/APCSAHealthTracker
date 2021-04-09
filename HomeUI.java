@@ -20,11 +20,10 @@ public class HomeUI extends JPanel {
         editFileButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                manager.initEditFileUI();
+                manager.initFileSelectUI();
             }
         });
 
-        // Cool styling stuff
         newFileButton.setBackground(new Color(102, 162, 114));
         newFileButton.setForeground(Color.WHITE);
         newFileButton.setFocusPainted(false);
@@ -33,7 +32,6 @@ public class HomeUI extends JPanel {
         editFileButton.setForeground(Color.WHITE);
         editFileButton.setFocusPainted(false);
         editFileButton.setFont(new Font("Roboto", Font.BOLD, 20));
-
 
         add(newFileButton);
         add(editFileButton);

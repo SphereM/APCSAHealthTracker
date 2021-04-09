@@ -1,9 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.io.*;
 
 public class GUIManager extends JFrame {
-    JPanel home, newFile, editFile, waterTracker, calorieTracker;
+    JPanel home, newFile, selectFile, updateFile, waterTracker, calorieTracker;
     boolean isWaterTracker;
     Tracker tracker;
 
@@ -27,9 +28,15 @@ public class GUIManager extends JFrame {
         revalidate();
     }
 
-    public void initEditFileUI() {
-        editFile = new FileEditUI(this);
-        setContentPane(editFile);
+    public void initFileSelectUI() {
+        selectFile = new FileSelectUI(this);
+        setContentPane(selectFile);
+        revalidate();
+    }
+
+    public void initFileUpdateUI(File file) {
+        updateFile = new UpdateFileUI(this, file);
+        setContentPane(updateFile);
         revalidate();
     }
 
